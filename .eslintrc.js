@@ -23,6 +23,7 @@ module.exports = {
         '@typescript-eslint/no-inferrable-types': 'off',
         'class-methods-use-this': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        'import/prefer-default-export': 'off',
     },
     overrides: [
         {
