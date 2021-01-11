@@ -57,9 +57,13 @@ export class Game extends VuexModule {
         },
     ];
 
-    private showSnackbar: boolean = false;
+    private showMaxSnackbar: boolean = false;
+
+    private showMinSnackbar: boolean = false;
 
     private disableAddButton: boolean = false;
+
+    private showSetupCompleteDialog: boolean = false;
 
     @Mutation
     private addPlayer(data: PlayerType) {
@@ -87,13 +91,23 @@ export class Game extends VuexModule {
     }
 
     @Mutation
-    private toggleSnackbar() {
-        this.showSnackbar = !this.showSnackbar;
+    private toggleMaxSnackbar() {
+        this.showMaxSnackbar = !this.showMaxSnackbar;
+    }
+
+    @Mutation
+    public toggleMinSnackbar() {
+        this.showMinSnackbar = !this.showMinSnackbar;
     }
 
     @Mutation
     private setAddButtonDisabled(value: boolean) {
         this.disableAddButton = value;
+    }
+
+    @Mutation
+    public toggleSetupCompleteDialog() {
+        this.showSetupCompleteDialog = !this.showSetupCompleteDialog;
     }
 
     @Action({ rawError: true })
@@ -111,7 +125,7 @@ export class Game extends VuexModule {
             }
         } else {
             this.setAddButtonDisabled(true);
-            this.toggleSnackbar();
+            this.toggleMaxSnackbar();
             throw new Error('Maximum players count is 6 persons.');
         }
     }
@@ -137,6 +151,11 @@ export class Game extends VuexModule {
         if (Object.keys(this.formErrors).length !== 0) {
             throw new Error('Form not valid');
         }
+    }
+
+    @Action({ rawError: true })
+    public completePlayerSetup() {
+        throw new Error('Method not implemented.');
     }
 }
 
