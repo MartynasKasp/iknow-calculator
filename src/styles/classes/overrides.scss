@@ -1,0 +1,14 @@
+.md-layout.md-gutter {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.md-layout .md-layout {
+    flex: 1;
+}
+
+@media (min-width: $small) {
+    .md-layout .md-layout {
+        flex: 0;
+    }
+}

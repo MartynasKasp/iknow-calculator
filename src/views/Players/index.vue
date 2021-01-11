@@ -1,6 +1,6 @@
 <template>
     <div class="md-layout">
-        <div class="md-layout-item md-layout md-gutter md-alignment-center-center">
+        <div class="md-layout-item md-layout md-gutter md-alignment-top-center">
             <div class="md-layout-item md-size-100">
                 <h1>Add players to game</h1>
             </div>
@@ -12,6 +12,7 @@
                         v-model="playerColor"
                         name="playerColor"
                         id="playerColor"
+                        :disabled="!availableColors.length"
                     >
                         <md-option
                             v-for="color in availableColors"
@@ -47,6 +48,7 @@
                 </md-button>
             </div>
         </div>
+
         <div class="md-layout-item md-layout PlayersSetup__ListContainer">
             <h2 class="md-layout-item md-size-100">Players list</h2>
 
@@ -77,6 +79,12 @@
                     class="md-layout-item md-small-size-70 md-size-20 PlayersSetup__PlayerName"
                 >
                     <strong>{{ player.name }}</strong>
+                    <span
+                        v-if="index === 0"
+                        class="md-caption"
+                    >
+                        (starts the first round)
+                    </span>
                 </div>
                 <div
                     class="md-layout-item md-size-5 PlayersSetup__PlayerAction"
@@ -92,8 +100,12 @@
         </div>
 
         <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showSnackbar">
-            <span>Maximum count of players is 6 persons.</span>
+            <span>Maximum count of players is 6 people.</span>
         </md-snackbar>
+
+        <md-button class="md-fab">
+            <md-icon>navigate_next</md-icon>
+        </md-button>
     </div>
 </template>
 
@@ -148,6 +160,10 @@ export default class Players extends Vue {
         return {
             'background-color': `#${color}`,
         };
+    }
+
+    handleGameStart() {
+        // a
     }
 }
 </script>

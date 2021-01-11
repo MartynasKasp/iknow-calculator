@@ -92,8 +92,8 @@ export class Game extends VuexModule {
     }
 
     @Mutation
-    private toggleAddButton() {
-        this.disableAddButton = !this.disableAddButton;
+    private setAddButtonDisabled(value: boolean) {
+        this.disableAddButton = value;
     }
 
     @Action({ rawError: true })
@@ -110,7 +110,7 @@ export class Game extends VuexModule {
                 throw e;
             }
         } else {
-            this.toggleAddButton();
+            this.setAddButtonDisabled(true);
             this.toggleSnackbar();
             throw new Error('Maximum players count is 6 persons.');
         }
@@ -119,7 +119,7 @@ export class Game extends VuexModule {
     @Action
     public removePlayerFromGame(index: number) {
         this.removePlayer(index);
-        this.toggleAddButton();
+        this.setAddButtonDisabled(false);
     }
 
     @Action({ rawError: true })

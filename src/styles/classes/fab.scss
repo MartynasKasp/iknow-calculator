@@ -1,0 +1,12 @@
+.md-fab {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+}
+
+@media (max-width: $small) {
+    .md-fab {
+        bottom: 8px;
+        left: 8px;
+    }
+}

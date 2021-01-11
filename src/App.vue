@@ -5,6 +5,15 @@
 </template>
 
 <style lang="scss">
+    html, body, #app {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        margin: 0;
+    }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
