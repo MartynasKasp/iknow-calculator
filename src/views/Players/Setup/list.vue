@@ -52,7 +52,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import gameModule from '@/modules/Game';
+import playerModule from '@/modules/Player';
 import { PlayerType } from '@/store/types';
 
 @Component
@@ -66,7 +66,7 @@ export default class PlayerSetupList extends Vue {
     }
 
     handleRemove(index: number) {
-        gameModule.removePlayerFromGame(index);
+        playerModule.removePlayerFromGame(index);
     }
 }
 </script>

@@ -15,21 +15,20 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import gameModule from '@/modules/Game';
+import gameModule, { GameStatusType } from '@/modules/Game';
+import playerModule from '@/modules/Player';
 import { Sync } from '@/utils/vuex-module-mutators';
 
 @Component
 export default class PlayersSetupDialog extends Vue {
     @Prop({ required: true }) private count!: number;
 
-    @Sync(gameModule, 'showSetupCompleteDialog') private active!: boolean;
-
-    get contentText(): string {
-        return `You are about to start the game with <strong>${this.count} players</strong>.`;
-    }
+    @Sync(playerModule, 'showSetupCompleteDialog') private active!: boolean;
 
     onConfirm() {
-        gameModule.completePlayerSetup();
+        playerModule.completePlayerSetup();
+        gameModule.setGameStatus(GameStatusType.gameStarted);
+        this.$router.push({ name: 'gameBoard' });
     }
 }
 </script>

@@ -24,7 +24,8 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { Sync, Get } from '@/utils/vuex-module-mutators';
-import gameModule from '@/modules/Game';
+import playerModule from '@/modules/Player';
+import gameModule, { GameStatusType } from '@/modules/Game';
 import { PlayerType } from '@/store/types';
 import PlayersSetupForm from './form.vue';
 import PlayersSetupList from './list.vue';
@@ -38,17 +39,25 @@ import PlayersSetupDialog from './dialog.vue';
     },
 })
 export default class PlayersSetup extends Vue {
-    @Get(gameModule) private players!: PlayerType[];
+    @Get(playerModule) private players!: PlayerType[];
 
-    @Sync(gameModule) private showMaxSnackbar!: boolean;
+    @Sync(playerModule) private showMaxSnackbar!: boolean;
 
-    @Sync(gameModule) private showMinSnackbar!: boolean;
+    @Sync(playerModule) private showMinSnackbar!: boolean;
+
+    @Get(gameModule) private gameStatus!: GameStatusType;
+
+    beforeMount() {
+        if (this.gameStatus !== GameStatusType.playersSetup) {
+            this.$router.push({ name: 'game' });
+        }
+    }
 
     handleGameStart() {
         if (this.players.length < 2) {
-            gameModule.toggleMinSnackbar();
+            playerModule.toggleMinSnackbar();
         } else {
-            gameModule.toggleSetupCompleteDialog();
+            playerModule.toggleSetupCompleteDialog();
         }
     }
 }

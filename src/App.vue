@@ -19,7 +19,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        color: #2c3e50;
+        color: $textColor;
         display: flex;
         flex-direction: row;
         line-height: 21px;
@@ -28,7 +28,7 @@
     .App__Layout {
         flex-grow: 1;
         overflow: auto;
-        // background-color: $backgroundColor;
+        background-color: $backgroundColor;
         display: flex;
         flex-direction: column;
 

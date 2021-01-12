@@ -53,6 +53,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Get, Sync } from '@/utils/vuex-module-mutators';
 import gameModule from '@/modules/Game';
+import playerModule from '@/modules/Player';
 import { PlayerType, SelectType } from '@/store/types';
 import { FormErrorType } from '@/utils/errors/types';
 
@@ -60,15 +61,15 @@ import { FormErrorType } from '@/utils/errors/types';
 export default class PlayersSetupForm extends Vue {
     @Prop({ required: true }) private players!: PlayerType[];
 
-    @Sync(gameModule, 'formData.name') private playerName!: string;
+    @Sync(playerModule, 'formData.name') private playerName!: string;
 
-    @Sync(gameModule, 'formData.color') private playerColor!: string;
+    @Sync(playerModule, 'formData.color') private playerColor!: string;
 
-    @Get(gameModule) private formErrors!: FormErrorType[];
+    @Get(playerModule) private formErrors!: FormErrorType[];
+
+    @Get(playerModule) private disableAddButton!: boolean;
 
     @Get(gameModule) private figureColors!: SelectType[];
-
-    @Get(gameModule) private disableAddButton!: boolean;
 
     get availableColors() {
         return this.figureColors
@@ -78,7 +79,7 @@ export default class PlayersSetupForm extends Vue {
 
     async handlePlayerAdd() {
         try {
-            await gameModule.addPlayerToGame();
+            await playerModule.addPlayerToGame();
         } catch (e) {
             console.error(e);
         }

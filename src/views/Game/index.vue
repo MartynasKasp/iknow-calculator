@@ -16,6 +16,9 @@ export default class Game extends Vue {
         case GameStatusType.playersSetup:
             this.$router.push({ name: 'playersSetup' });
             break;
+        case GameStatusType.gameStarted:
+            this.$router.push({ name: 'gameBoard' });
+            break;
         default:
             break;
         }
