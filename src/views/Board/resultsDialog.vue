@@ -4,10 +4,15 @@
 
         <md-dialog-content>
             <div
+                class="Board__ResultsDialogContent md-subheading"
                 v-for="result in roundResults"
                 :key="result.color"
             >
-                <strong>{{ result.name }}</strong> gets {{ result.points }} point(s).
+                <div class="Board__ResultColor" :style="elementStyle(result.color)"></div>
+                <p>
+                    <strong>{{ result.name }}</strong> gets
+                    <strong>{{ result.points }}</strong> point(s).
+                </p>
             </div>
         </md-dialog-content>
 
@@ -29,6 +34,10 @@ export default class ResultsDialog extends Vue {
     @Get(boardModule) private roundResults!: PlayerType[];
 
     @Sync(boardModule, 'showCalculationResultDialog') private active!: boolean;
+
+    elementStyle(color: string) {
+        return { 'background-color': `#${color}` };
+    }
 
     onConfirm() {
         playerModule.startNextRound(this.roundResults);

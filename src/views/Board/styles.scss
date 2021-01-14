@@ -135,6 +135,22 @@
     }
 }
 
+.Board__ResultsDialogContent {
+    display: flex;
+    padding: 4px 0;
+
+    .Board__ResultColor {
+        margin: 0 8px 0 0;
+        width: 20px;
+        height: 20px;
+        border: 1px $colorGrey solid;
+    }
+
+    > p {
+        margin: 0;
+    }
+}
+
 @media(max-width: $xsmall) {
     .Board__Container {
         .Board__BetSignContainer {
