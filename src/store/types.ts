@@ -13,7 +13,10 @@ export type BoardBoxType = {
     level: number;
     points: number;
     playerKnowFigure: PlayerType|null;
-    playerBetFigure: PlayerType|null;
+    playerBetFigure: {
+        positive: PlayerType|null;
+        negative: PlayerType|null;
+    };
     knowAnswer: boolean;
     betAnswer: boolean|null;
 }

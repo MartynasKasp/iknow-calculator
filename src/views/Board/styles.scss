@@ -72,6 +72,7 @@
         width: 100px;
         height: 100px;
         cursor: pointer;
+        position: relative;
 
         &--bet {
             border-radius: 50%;
@@ -81,6 +82,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            i.md-icon {
+                position: absolute;
+                color: $colorWhite;
+                z-index: 2;
+            }
         }
 
         .Board__FigurePoints {
@@ -117,6 +124,13 @@
             width: 15px;
             border-radius: 50%;
             background-color: $colorGrey;
+        }
+
+        .Board__PlayerKnowFigure {
+            z-index: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
     }
 }

@@ -17,6 +17,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import gameModule, { GameStatusType } from '@/modules/Game';
 import playerModule from '@/modules/Player';
+import boardModule, { BoardStatusType } from '@/modules/Board';
 import { Sync } from '@/utils/vuex-module-mutators';
 
 @Component
@@ -28,6 +29,7 @@ export default class PlayersSetupDialog extends Vue {
     onConfirm() {
         playerModule.completePlayerSetup();
         gameModule.setGameStatus(GameStatusType.gameStarted);
+        boardModule.setBoardStatus(BoardStatusType.figuresSetup);
         this.$router.push({ name: 'gameBoard' });
     }
 }

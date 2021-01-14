@@ -3,11 +3,14 @@ import {
 } from 'vuex-module-decorators';
 import { AutoMutations } from '@/utils/vuex-module-mutators';
 import store from '@/store';
-import { PlayerType } from '@/store/types';
+import { BoardBoxType, PlayerType } from '@/store/types';
 import { MAX_PLAYERS } from '@/modules/Game';
 import { FormErrorType } from '@/utils/errors/types';
 import { defaultFormData } from './defaults';
 import { PlayerFormDataType } from './types';
+
+export const POINTS_READING = 2;
+export const POINTS_BET = 1;
 
 @Module({
     namespaced: true, dynamic: true, store, name: 'player',
@@ -91,12 +94,12 @@ export class Player extends VuexModule {
 
     @Mutation
     private setKnowFigures(data: PlayerType[]) {
-        this.knowFigures = data;
+        this.knowFigures = [...data];
     }
 
     @Mutation
     private setBetFigures(data: PlayerType[]) {
-        this.betFigures = data;
+        this.betFigures = [...data];
     }
 
     @Action
@@ -116,7 +119,7 @@ export class Player extends VuexModule {
                 await this.validateForm();
 
                 const { name, color } = this.formData;
-                this.addPlayer({ name, color, points: 0 });
+                this.addPlayer({ name, color, points: 1 });
                 this.clearFormData();
             } catch (e) {
                 throw e;
@@ -167,9 +170,90 @@ export class Player extends VuexModule {
     }
 
     @Action
-    public startNextRound() {
+    public startNextRound(results: PlayerType[]) {
+        this.addRoundPoints(results);
         this.getNextReader();
         this.setFigures();
+    }
+
+    @Action
+    public async calculatePoints(board: BoardBoxType[]): Promise<PlayerType[]> {
+        const results: PlayerType[] = [];
+        results.push({
+            name: this.players[this.readerIndex].name,
+            color: this.players[this.readerIndex].color,
+            points: POINTS_READING,
+        });
+
+        board.forEach((row) => {
+            if (row.playerKnowFigure && row.knowAnswer) {
+                results.push({
+                    name: row.playerKnowFigure.name,
+                    color: row.playerKnowFigure.color,
+                    points: row.points,
+                });
+            }
+        });
+
+        board.forEach((row) => {
+            if (row.playerKnowFigure) {
+                if (row.playerBetFigure.positive) {
+                    let gotPoints: number = 0;
+                    if (row.knowAnswer) {
+                        gotPoints += POINTS_BET;
+                    } else {
+                        gotPoints -= POINTS_BET;
+                    }
+                    const { color, name } = row.playerBetFigure.positive;
+                    const player = results.map((i) => i.color)
+                        .indexOf(color);
+
+                    if (player !== -1) {
+                        results[player].points += gotPoints;
+                    } else {
+                        results.push({
+                            name,
+                            color,
+                            points: gotPoints,
+                        });
+                    }
+                }
+
+                if (row.playerBetFigure.negative) {
+                    let points: number = 0;
+                    if (!row.knowAnswer) {
+                        points += POINTS_BET;
+                    } else {
+                        points -= POINTS_BET;
+                    }
+
+                    const { color, name } = row.playerBetFigure.negative;
+                    const player = results.map((i) => i.color)
+                        .indexOf(color);
+
+                    if (player !== -1) {
+                        results[player].points += points;
+                    } else {
+                        results.push({
+                            name,
+                            color,
+                            points,
+                        });
+                    }
+                }
+            }
+        });
+        return results;
+    }
+
+    @Action
+    public addRoundPoints(results: PlayerType[]) {
+        results.forEach((result) => {
+            const player = this.players.find((p) => p.color === result.color);
+            if (player) {
+                player.points += result.points;
+            }
+        });
     }
 }
 

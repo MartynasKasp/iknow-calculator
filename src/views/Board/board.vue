@@ -24,9 +24,18 @@
                 <div class="md-layout-item md-size-30">
                     <div
                         class="Board__Figure Board__Figure--know"
-                        :style="figureStyle(box, 'know')"
                         @click="handleKnowBox(box.level)"
                     >
+                        <div
+                            class="Board__PlayerKnowFigure"
+                            :style="figureStyle(box, 'know')"
+                        ></div>
+                        <md-icon
+                            v-if="box.knowAnswer"
+                            class="md-size-3x"
+                        >
+                            check
+                        </md-icon>
                         <div :class="`Board__FigurePoints--${box.points}`">
                             <div
                                 v-for="(point, index) in box.points"
@@ -56,75 +65,32 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import { Sync } from '@/utils/vuex-module-mutators';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Get, Sync } from '@/utils/vuex-module-mutators';
 import playerModule from '@/modules/Player';
+import boardModule, { BoardStatusType } from '@/modules/Board';
 import { BoardBoxType, PlayerType } from '@/store/types';
 
 @Component
 export default class GameBoard extends Vue {
+    @Prop({ required: true }) private gameBoardBox!: BoardBoxType[];
+
     @Sync(playerModule) private knowFigures!: PlayerType[];
 
     @Sync(playerModule) private betFigures!: PlayerType[];
 
-    private gameBoardBox: BoardBoxType[] = [
-        {
-            level: 6,
-            points: 3,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-        {
-            level: 5,
-            points: 3,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-        {
-            level: 4,
-            points: 2,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-        {
-            level: 3,
-            points: 2,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-        {
-            level: 2,
-            points: 1,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-        {
-            level: 1,
-            points: 1,
-            playerKnowFigure: null,
-            playerBetFigure: null,
-            knowAnswer: false,
-            betAnswer: false,
-        },
-    ];
+    @Get(boardModule) private boardStatus!: BoardStatusType;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     figureStyle(box: BoardBoxType, type: string, answer: boolean) {
         switch (type) {
         case 'bet':
-            if (box.playerBetFigure && box.betAnswer) {
-                if (box.betAnswer === answer) {
-                    return { 'background-color': `#${box.playerBetFigure.color}` };
+            if (answer === true) {
+                if (box.playerBetFigure.positive) {
+                    return { 'background-color': `#${box.playerBetFigure.positive.color}` };
+                }
+            } else if (answer === false) {
+                if (box.playerBetFigure.negative) {
+                    return { 'background-color': `#${box.playerBetFigure.negative.color}` };
                 }
             }
             break;
@@ -143,15 +109,25 @@ export default class GameBoard extends Vue {
         const box: BoardBoxType = this.gameBoardBox
             .find((item) => item.level === level) as BoardBoxType;
 
-        if (box.playerKnowFigure === null) {
-            if (this.knowFigures.length > 0) {
-                const player = this.knowFigures.shift() as PlayerType;
+        if (this.boardStatus === BoardStatusType.figuresSetup) {
+            if (box.playerKnowFigure === null) {
+                if (this.knowFigures.length > 0) {
+                    const player = this.knowFigures.shift() as PlayerType;
 
-                box.playerKnowFigure = player;
+                    box.playerKnowFigure = player;
+                }
+            } else {
+                this.knowFigures.unshift(box.playerKnowFigure);
+                box.playerKnowFigure = null;
             }
-        } else {
-            this.knowFigures.unshift(box.playerKnowFigure);
-            box.playerKnowFigure = null;
+        } else if (this.boardStatus === BoardStatusType.answersCheck) {
+            if (box.playerKnowFigure) {
+                if (box.knowAnswer) {
+                    box.knowAnswer = false;
+                } else {
+                    box.knowAnswer = true;
+                }
+            }
         }
     }
 
@@ -159,18 +135,38 @@ export default class GameBoard extends Vue {
         const box: BoardBoxType = this.gameBoardBox
             .find((item) => item.level === level) as BoardBoxType;
 
-        if (box.playerBetFigure === null) {
-            if (this.betFigures.length > 0) {
-                const player = this.betFigures.shift() as PlayerType;
+        if (this.boardStatus === BoardStatusType.figuresSetup) {
+            if (
+                (answer && box.playerBetFigure.positive === null)
+                || (!answer && box.playerBetFigure.negative === null)
+            ) {
+                if (this.betFigures.length > 0) {
+                    if (
+                        box.playerKnowFigure
+                        && box.playerKnowFigure.color === this.betFigures[0].color
+                    ) {
+                        boardModule.toggleBetSnackbar();
+                    } else if (box.playerKnowFigure !== null) {
+                        const player = this.betFigures.shift() as PlayerType;
 
-                box.playerBetFigure = player;
-                box.betAnswer = answer;
-                console.log('box', box, 'figures', this.gameBoardBox);
+                        if (answer) {
+                            box.playerBetFigure.positive = player;
+                        } else {
+                            box.playerBetFigure.negative = player;
+                        }
+                        box.betAnswer = answer;
+                    }
+                }
+            } else {
+                if (answer) {
+                    this.betFigures.unshift(box.playerBetFigure.positive as PlayerType);
+                    box.playerBetFigure.positive = null;
+                } else {
+                    this.betFigures.unshift(box.playerBetFigure.negative as PlayerType);
+                    box.playerBetFigure.negative = null;
+                }
+                box.betAnswer = null;
             }
-        } else {
-            this.betFigures.unshift(box.playerBetFigure);
-            box.playerBetFigure = null;
-            box.betAnswer = null;
         }
     }
 }
