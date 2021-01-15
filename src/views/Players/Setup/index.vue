@@ -1,23 +1,25 @@
 <template>
     <div class="md-layout">
-        <PlayersSetupForm :players="players" />
-        <PlayersSetupList :players="players" />
+        <div class="md-layout-item md-layout md-size-100">
+            <PlayersSetupForm :players="players" />
+            <PlayersSetupList :players="players" />
 
-        <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showMaxSnackbar">
-            <span>Maximum amount of players is 6 people.</span>
-        </md-snackbar>
+            <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showMaxSnackbar">
+                <span>Maximum amount of players is 6 people.</span>
+            </md-snackbar>
 
-        <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showMinSnackbar">
-            <span>Minimum amount of players is 2 people.</span>
-        </md-snackbar>
+            <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showMinSnackbar">
+                <span>Minimum amount of players is 2 people.</span>
+            </md-snackbar>
 
-        <md-button
-            @click="handleGameStart"
-            class="md-fab">
-            <md-icon>navigate_next</md-icon>
-        </md-button>
+            <md-button
+                @click="handleGameStart"
+                class="md-fab">
+                <md-icon>navigate_next</md-icon>
+            </md-button>
 
-        <PlayersSetupDialog :count="players.length" />
+            <PlayersSetupDialog :count="players.length" />
+        </div>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="md-layout-item md-layout PlayersSetup__ListContainer">
+    <div class="md-layout-item md-layout md-gutter md-size-100 PlayersSetup__ListContainer">
         <h2 class="md-layout-item md-size-100">Players list</h2>
 
         <p
@@ -26,7 +26,7 @@
                 :style="setBoxColor(player.color)"
             ></div>
             <div
-                class="md-layout-item md-small-size-70 md-size-20 PlayersSetup__PlayerName"
+                class="md-layout-item md-small-size-60 md-size-20 PlayersSetup__PlayerName"
             >
                 <strong>{{ player.name }}</strong>
                 <span

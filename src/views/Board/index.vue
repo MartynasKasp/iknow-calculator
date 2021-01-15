@@ -1,42 +1,50 @@
 <template>
-    <div class="md-layout">
-        <div class="md-layout-item">
-            <h1>Game board</h1>
-        </div>
+    <div class="md-layout md-gutter">
+        <div class="md-layout-item md-layout md-size-100">
+            <h1 class="md-layout-item md-size-100">Game board</h1>
 
-        <div class="md-layout-item">
-            <p v-if="figuresSetup" class="md-subheading">
-                <strong>{{ readerName }}</strong> reads the card this round.
-            </p>
-            <p v-else class="md-subheading">
-                Check <strong>iKnow</strong> figures of those, who answered correctly.
-            </p>
-        </div>
+            <div class="md-layout-item">
+                <p v-if="figuresSetup" class="md-subheading">
+                    <strong>{{ readerName }}</strong> reads the card this round.
+                </p>
+                <p v-else class="md-subheading">
+                    Check <strong>iKnow</strong> figures of those, who answered correctly.
+                </p>
+            </div>
 
-        <GameBoard :gameBoardBox="gameBoardBox" />
+            <GameBoard :gameBoardBox="gameBoardBox" />
 
-        <div class="md-layout-item">
-            <md-button
-                v-if="figuresSetup"
-                class="md-accent md-raised"
-                @click="handleCheckAnswers"
+            <div class="md-layout-item">
+                <md-button
+                    v-if="figuresSetup"
+                    class="md-accent md-fab"
+                    @click="handleCheckAnswers"
+                >
+                    <md-icon>navigate_next</md-icon>
+                </md-button>
+                <md-button
+                    v-else
+                    class="md-accent md-fab"
+                    @click="handleCalculatePoints"
+                >
+                    <md-icon>calculate</md-icon>
+                </md-button>
+            </div>
+
+            <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showBetSnackbar">
+                <span>You cannot bet on yourself.</span>
+            </md-snackbar>
+
+            <md-snackbar
+                md-position="center"
+                :md-duration="4000"
+                :md-active.sync="showFiguresSnackbar"
             >
-                Continue
-            </md-button>
-            <md-button
-                v-else
-                class="md-accent md-raised"
-                @click="handleCalculatePoints"
-            >
-                Calculate
-            </md-button>
+                <span>Every bet and know figure must be placed.</span>
+            </md-snackbar>
+
+            <ResultsDialog />
         </div>
-
-        <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showBetSnackbar">
-            <span>You cannot bet on yourself.</span>
-        </md-snackbar>
-
-        <ResultsDialog />
     </div>
 </template>
 
@@ -69,6 +77,12 @@ export default class Board extends Vue {
 
     @Get(boardModule) private gameBoardBox!: BoardBoxType[];
 
+    @Sync(boardModule) private showFiguresSnackbar!: boolean;
+
+    @Get(playerModule) private knowFigures!: PlayerType[];
+
+    @Get(playerModule) private betFigures!: PlayerType[];
+
     beforeMount() {
         if (this.gameStatus !== GameStatusType.gameStarted) {
             this.$router.push({ name: 'game' });
@@ -84,7 +98,11 @@ export default class Board extends Vue {
     }
 
     handleCheckAnswers() {
-        boardModule.setBoardStatus(BoardStatusType.answersCheck);
+        if (this.betFigures.length === 0 && this.knowFigures.length === 0) {
+            boardModule.setBoardStatus(BoardStatusType.answersCheck);
+        } else {
+            boardModule.toggleFiguresSnackbar();
+        }
     }
 
     async handleCalculatePoints() {
