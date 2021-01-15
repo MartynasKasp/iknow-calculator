@@ -2,6 +2,7 @@ export type PlayerType = {
     name: string;
     color: string;
     points: number;
+    roundResult: number;
 }
 
 export type SelectType = {

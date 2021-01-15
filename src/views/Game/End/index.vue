@@ -24,10 +24,17 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Get } from '@/utils/vuex-module-mutators';
 import playerModule from '@/modules/Player';
 import { PlayerType } from '@/store/types';
+import party from 'party-js';
 
 @Component
 export default class GameEnd extends Vue {
     @Get(playerModule) private players!: PlayerType[];
+
+    mounted() {
+        party.screen({
+            count: 100,
+        });
+    }
 
     get sortedPlayers() {
         return this.players.sort((a, b) => (a.points > b.points ? -1 : 1));

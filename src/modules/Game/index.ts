@@ -17,7 +17,7 @@ export enum GameStatusType {
 })
 @AutoMutations
 export class Game extends VuexModule {
-    private gameStatus: GameStatusType = GameStatusType.playersSetup; // playersSetup;
+    private gameStatus: GameStatusType = GameStatusType.playersSetup;
 
     private figureColors: SelectType[] = [
         {

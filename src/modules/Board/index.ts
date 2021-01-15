@@ -3,7 +3,7 @@ import {
 } from 'vuex-module-decorators';
 import { AutoMutations } from '@/utils/vuex-module-mutators';
 import store from '@/store';
-import { BoardBoxType, PlayerType } from '@/store/types';
+import { BoardBoxType } from '@/store/types';
 import { defaultGameBoardBox } from './defaults';
 
 export enum BoardStatusType {
@@ -25,8 +25,6 @@ export class Board extends VuexModule {
 
     private showCalculationResultDialog: boolean = false;
 
-    private roundResults: PlayerType[] = [];
-
     private showFiguresSnackbar: boolean = false;
 
     @Mutation
@@ -37,11 +35,6 @@ export class Board extends VuexModule {
     @Mutation
     public toggleResultsDialog() {
         this.showCalculationResultDialog = !this.showCalculationResultDialog;
-    }
-
-    @Mutation
-    public setRoundResults(data: PlayerType[]) {
-        this.roundResults = data;
     }
 
     @Mutation

@@ -5,13 +5,14 @@
         <md-dialog-content>
             <div
                 class="Board__ResultsDialogContent md-subheading"
-                v-for="result in roundResults"
-                :key="result.color"
+                v-for="player in roundResults"
+                :key="player.color"
             >
-                <div class="Board__ResultColor" :style="elementStyle(result.color)"></div>
+                <div class="Board__ResultColor" :style="elementStyle(player.color)"></div>
                 <p>
-                    <strong>{{ result.name }}</strong> gets
-                    <strong>{{ result.points }}</strong> point(s).
+                    <strong>{{ player.name }}</strong> gets
+                    <strong>{{ player.roundResult }}</strong> point(s)
+                    (<strong>{{ player.points }}</strong> total).
                 </p>
             </div>
         </md-dialog-content>
@@ -28,26 +29,25 @@ import { Sync, Get } from '@/utils/vuex-module-mutators';
 import { PlayerType } from '@/store/types';
 import boardModule from '@/modules/Board';
 import playerModule from '@/modules/Player';
-import gameModule, { GameStatusType } from '@/modules/Game';
 
 @Component
 export default class ResultsDialog extends Vue {
-    @Get(boardModule) private roundResults!: PlayerType[];
+    @Get(playerModule) private players!: PlayerType[];
 
     @Sync(boardModule, 'showCalculationResultDialog') private active!: boolean;
+
+    get roundResults() {
+        const result = [...this.players];
+        return result.sort((a, b) => (a.roundResult > b.roundResult ? -1 : 1));
+    }
 
     elementStyle(color: string) {
         return { 'background-color': `#${color}` };
     }
 
     async onConfirm() {
-        playerModule.startNextRound(this.roundResults);
-        if (await playerModule.isGameOver()) {
-            gameModule.setGameStatus(GameStatusType.gameEnd);
-            this.$router.push({ name: 'game' });
-        } else {
-            boardModule.startNextRound();
-        }
+        playerModule.startNextRound();
+        boardModule.startNextRound();
     }
 }
 </script>

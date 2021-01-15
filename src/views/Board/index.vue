@@ -106,10 +106,13 @@ export default class Board extends Vue {
     }
 
     async handleCalculatePoints() {
-        const result = await playerModule.calculatePoints(this.gameBoardBox);
-        boardModule.setRoundResults(result);
-        boardModule.toggleResultsDialog();
-        return result;
+        await playerModule.calculatePoints(this.gameBoardBox);
+        if (await playerModule.isGameOver()) {
+            gameModule.setGameStatus(GameStatusType.gameEnd);
+            this.$router.push({ name: 'game' });
+        } else {
+            boardModule.toggleResultsDialog();
+        }
     }
 }
 </script>
