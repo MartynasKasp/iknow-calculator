@@ -22,6 +22,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { Get } from '@/utils/vuex-module-mutators';
+import gameModule, { GameStatusType } from '@/modules/Game';
 import playerModule from '@/modules/Player';
 import { PlayerType } from '@/store/types';
 import party from 'party-js';
@@ -29,6 +30,14 @@ import party from 'party-js';
 @Component
 export default class GameEnd extends Vue {
     @Get(playerModule) private players!: PlayerType[];
+
+    @Get(gameModule) private gameStatus!: GameStatusType;
+
+    beforeMount() {
+        if (this.gameStatus !== GameStatusType.gameEnd) {
+            this.$router.push({ name: 'game' });
+        }
+    }
 
     mounted() {
         party.screen({

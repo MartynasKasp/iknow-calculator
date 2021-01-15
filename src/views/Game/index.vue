@@ -1,5 +1,5 @@
 <template>
-    <h2>Game view</h2>
+    <router-view></router-view>
 </template>
 
 <script lang="ts">
