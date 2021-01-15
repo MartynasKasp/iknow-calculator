@@ -27,6 +27,8 @@ export class Board extends VuexModule {
 
     private roundResults: PlayerType[] = [];
 
+    private showFiguresSnackbar: boolean = false;
+
     @Mutation
     public setBoardStatus(status: BoardStatusType) {
         this.boardStatus = status;
@@ -50,6 +52,11 @@ export class Board extends VuexModule {
     @Mutation
     private resetGameBoard() {
         this.gameBoardBox = defaultGameBoardBox();
+    }
+
+    @Mutation
+    public toggleFiguresSnackbar() {
+        this.showFiguresSnackbar = !this.showFiguresSnackbar;
     }
 
     @Action
