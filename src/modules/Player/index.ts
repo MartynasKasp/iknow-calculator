@@ -46,6 +46,11 @@ export class Player extends VuexModule {
     }
 
     @Mutation
+    private setPlayersData(data: PlayerType[]) {
+        this.players = [...data];
+    }
+
+    @Mutation
     private toggleMaxSnackbar() {
         this.showMaxSnackbar = !this.showMaxSnackbar;
     }
@@ -117,7 +122,9 @@ export class Player extends VuexModule {
                 await this.validateForm();
 
                 const { name, color } = this.formData;
-                this.addPlayer({ name, color, points: 1 });
+                this.addPlayer({
+                    name, color, points: 1, roundResult: 0,
+                });
                 this.clearFormData();
             } catch (e) {
                 throw e;
@@ -160,98 +167,87 @@ export class Player extends VuexModule {
 
     @Action
     public setFigures() {
-        const playersFigures: PlayerType[] = this.players
-            .filter((player, index) => index !== this.readerIndex);
+        const playersBefore = this.players.slice(0, this.readerIndex);
+        const playersAfter = this.players.slice(this.readerIndex + 1);
 
-        this.setKnowFigures(playersFigures);
-        this.setBetFigures(playersFigures);
+        this.setKnowFigures([...playersAfter, ...playersBefore]);
+        this.setBetFigures([...playersAfter, ...playersBefore]);
     }
 
     @Action
-    public startNextRound(results: PlayerType[]) {
-        this.addRoundPoints(results);
+    public startNextRound() {
+        this.resetRoundResults();
         this.getNextReader();
         this.setFigures();
     }
 
     @Action
-    public async calculatePoints(board: BoardBoxType[]): Promise<PlayerType[]> {
-        const results: PlayerType[] = [];
-        results.push({
-            name: this.players[this.readerIndex].name,
-            color: this.players[this.readerIndex].color,
-            points: POINTS_READING,
-        });
+    private resetRoundResults() {
+        const resetResult = this.players.map((player) => ({ ...player, roundResult: 0 }));
+        this.setPlayersData(resetResult);
+    }
+
+    @Action
+    public async calculatePoints(board: BoardBoxType[]) {
+        await this.calculateRoundResult(board);
+        this.addRoundPoints();
+    }
+
+    @Action
+    public async calculateRoundResult(board: BoardBoxType[]) {
+        this.players[this.readerIndex].roundResult = POINTS_READING;
 
         board.forEach((row) => {
             if (row.playerKnowFigure && row.knowAnswer) {
-                results.push({
-                    name: row.playerKnowFigure.name,
-                    color: row.playerKnowFigure.color,
-                    points: row.points,
-                });
+                const player = this.players
+                    .find((p) => p.color === row.playerKnowFigure?.color);
+
+                if (player) {
+                    player.roundResult += row.points;
+                }
             }
         });
 
         board.forEach((row) => {
             if (row.playerKnowFigure) {
                 if (row.playerBetFigure.positive) {
-                    let gotPoints: number = 0;
-                    if (row.knowAnswer) {
-                        gotPoints += POINTS_BET;
-                    } else {
-                        gotPoints -= POINTS_BET;
-                    }
-                    const { color, name } = row.playerBetFigure.positive;
-                    const player = results.map((i) => i.color)
-                        .indexOf(color);
+                    const { color } = row.playerBetFigure.positive;
+                    const player = this.players
+                        .find((p) => p.color === color);
 
-                    if (player !== -1) {
-                        results[player].points += gotPoints;
-                    } else {
-                        results.push({
-                            name,
-                            color,
-                            points: gotPoints,
-                        });
+                    if (player) {
+                        if (row.knowAnswer) {
+                            player.roundResult += POINTS_BET;
+                        } else {
+                            player.roundResult -= POINTS_BET;
+                        }
                     }
                 }
 
                 if (row.playerBetFigure.negative) {
-                    let points: number = 0;
-                    if (!row.knowAnswer) {
-                        points += POINTS_BET;
-                    } else {
-                        points -= POINTS_BET;
-                    }
+                    const { color } = row.playerBetFigure.negative;
+                    const player = this.players
+                        .find((p) => p.color === color);
 
-                    const { color, name } = row.playerBetFigure.negative;
-                    const player = results.map((i) => i.color)
-                        .indexOf(color);
-
-                    if (player !== -1) {
-                        results[player].points += points;
-                    } else {
-                        results.push({
-                            name,
-                            color,
-                            points,
-                        });
+                    if (player) {
+                        if (!row.knowAnswer) {
+                            player.roundResult += POINTS_BET;
+                        } else {
+                            player.roundResult -= POINTS_BET;
+                        }
                     }
                 }
             }
         });
-        return results;
     }
 
     @Action
-    public addRoundPoints(results: PlayerType[]) {
-        results.forEach((result) => {
-            const player = this.players.find((p) => p.color === result.color);
-            if (player) {
-                player.points += result.points;
-            }
-        });
+    public addRoundPoints() {
+        const result = this.players.map((player) => ({
+            ...player,
+            points: player.points + player.roundResult,
+        }));
+        this.setPlayersData(result);
     }
 
     @Action
