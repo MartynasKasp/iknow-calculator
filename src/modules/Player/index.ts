@@ -8,9 +8,7 @@ import { MAX_PLAYERS } from '@/modules/Game';
 import { FormErrorType } from '@/utils/errors/types';
 import { defaultFormData } from './defaults';
 import { PlayerFormDataType } from './types';
-
-export const POINTS_READING = 2;
-export const POINTS_BET = 1;
+import { POINTS_BET, POINTS_READING, POINTS_WINNER } from '../Game/defaults';
 
 @Module({
     namespaced: true, dynamic: true, store, name: 'player',
@@ -254,6 +252,18 @@ export class Player extends VuexModule {
                 player.points += result.points;
             }
         });
+    }
+
+    @Action
+    public async isGameOver(): Promise<boolean> {
+        const winner = this.players
+            .find((player) => player.points >= POINTS_WINNER);
+
+        if (winner) {
+            return true;
+        }
+
+        return false;
     }
 }
 

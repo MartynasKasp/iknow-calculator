@@ -24,10 +24,11 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import boardModule from '@/modules/Board';
-import playerModule from '@/modules/Player';
 import { Sync, Get } from '@/utils/vuex-module-mutators';
 import { PlayerType } from '@/store/types';
+import boardModule from '@/modules/Board';
+import playerModule from '@/modules/Player';
+import gameModule, { GameStatusType } from '@/modules/Game';
 
 @Component
 export default class ResultsDialog extends Vue {
@@ -39,9 +40,14 @@ export default class ResultsDialog extends Vue {
         return { 'background-color': `#${color}` };
     }
 
-    onConfirm() {
+    async onConfirm() {
         playerModule.startNextRound(this.roundResults);
-        boardModule.startNextRound();
+        if (await playerModule.isGameOver()) {
+            gameModule.setGameStatus(GameStatusType.gameEnd);
+            this.$router.push({ name: 'game' });
+        } else {
+            boardModule.startNextRound();
+        }
     }
 }
 </script>
