@@ -1,12 +1,26 @@
 <template>
-    <h1>Hello</h1>
+    <div class="Home__Container">
+        <Header />
+        <Content />
+    </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import Header from './header.vue';
+import Content from './content.vue';
 
-@Component
+@Component({
+    components: {
+        Header,
+        Content,
+    },
+})
 export default class Home extends Vue {
 
 }
 </script>
+
+<style lang="scss">
+    @import './styles.scss';
+</style>

@@ -1,0 +1,39 @@
+.Home__HeaderContainer,
+#PageIntro {
+    min-height: 90%;
+    height: 90%;
+}
+
+.Home__Container {
+
+    .Home__HeaderContainer {
+        .Home__Navigation {
+            position: fixed;
+        }
+
+        #PageIntro {
+            background: url('https://images-na.ssl-images-amazon.com/images/I/61qKGYdgS2L._AC_SL1453_.jpg') center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+            .Home__Mask {
+                height: 100%;
+                background-color: rgba($color: #000000, $alpha: 0.7);
+            }
+        }
+    }
+
+    .Home__ContentContainer {
+        padding: 0 100px;
+    }
+}
+
+@media (max-width: $small) {
+    .Home__Container {
+        .Home__ContentContainer {
+            padding: 0;
+        }
+    }
+}

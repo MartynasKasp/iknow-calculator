@@ -31,7 +31,7 @@
         background-color: $backgroundColor;
         display: flex;
         flex-direction: column;
-        padding: 0 0 72px 0;
+        // padding: 0 0 72px 0;
 
         > div {
             flex: 0 1 auto;
