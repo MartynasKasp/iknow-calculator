@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import {
     MdButton, MdField, MdMenu, MdList,
-    MdSnackbar, MdIcon, MdDialog,
+    MdSnackbar, MdIcon, MdDialog, MdApp,
+    MdToolbar, MdContent, MdCard, MdDivider,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
@@ -19,6 +20,11 @@ Vue.use(MdList);
 Vue.use(MdSnackbar);
 Vue.use(MdIcon);
 Vue.use(MdDialog);
+Vue.use(MdApp);
+Vue.use(MdToolbar);
+Vue.use(MdContent);
+Vue.use(MdCard);
+Vue.use(MdDivider);
 
 new Vue({
     router,

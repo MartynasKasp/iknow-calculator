@@ -1,0 +1,115 @@
+.Home__HeaderContainer,
+#PageIntro {
+    min-height: 90%;
+    height: 90%;
+}
+
+.Home__Container {
+    .Home__HeaderContainer {
+        #PageIntro {
+            background: url('/img/iknow.jpg') center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+            .Home__Mask {
+                height: 100%;
+                background-color: rgba($color: #000000, $alpha: 0.7);
+
+                .Home__MaskContent {
+                    height: 100%;
+                    color: $colorWhite;
+                    text-shadow: 2px 2px #000;
+                }
+            }
+        }
+    }
+
+    .Home__ContentContainer {
+        padding: 0 148px;
+        text-align: justify;
+
+        h1 {
+            text-align: center;
+        }
+
+        .md-divider {
+            margin: 24px 0;
+        }
+
+        div.md-card-content {
+            position: relative;
+            padding-top: 40px;
+
+            .Home__HowToNumber {
+                height: 56px;
+                width: 56px;
+                border: 1px solid $colorGrey;
+                border-radius: 50%;
+                background-color: $colorWhite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                position: absolute;
+                top: -28px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .Home__FooterContainer {
+        min-height: 250px;
+        background-color: $colorDark;
+        color: $colorWhite;
+        margin-top: 124px;
+        padding: 32px 148px 0;
+
+        div {
+            text-align: left;
+        }
+
+        .body2 {
+            color: $colorLight;
+        }
+
+        ul.body2 {
+            list-style-type: none;
+            padding: 0;
+
+            a {
+                text-decoration: none;
+                color: $colorLight;
+            }
+        }
+    }
+
+    .Home__FooterCopyright {
+        height: 48px;
+        background-color: $colorDarker;
+        color: $colorWhite;
+
+        a {
+            color: $colorLight;
+        }
+
+        > div {
+            margin: auto 0;
+        }
+    }
+}
+
+@media (max-width: $small) {
+    .Home__Container {
+        .Home__ContentContainer {
+            padding: 0 8px;
+        }
+
+        .Home__FooterContainer {
+            padding: 16px 8px;
+        }
+    }
+}

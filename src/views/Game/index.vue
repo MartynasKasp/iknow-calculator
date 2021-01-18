@@ -23,6 +23,7 @@ export default class Game extends Vue {
             this.$router.push({ name: 'gameEnd' });
             break;
         default:
+            this.$router.push({ name: 'homepage' });
             break;
         }
     }
