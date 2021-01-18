@@ -11,37 +11,39 @@
 
                 <div class="md-layout-item">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Quisque in feugiat risus. Quisque dictum ante interdum leo
-                        ullamcorper varius. Aenean accumsan, justo non consectetur
-                        dictum, dolor magna luctus arcu, vel cursus leo risus non dolor.
-                        Integer non eros rutrum, porttitor ex at, rhoncus turpis. Sed finibus
-                        libero vel semper ultrices. Pellentesque sit amet feugiat nunc,
-                        ac vehicula nisi. Praesent consectetur enim vel consectetur feugiat.
-                        Nam lacinia nunc a ipsum imperdiet vestibulum. Donec finibus leo et
-                        ligula cursus vulputate. Integer maximus feugiat hendrerit. Sed quis
-                        nibh semper odio placerat bibendum sit amet et elit.
+                        iKNOW is a board game with a touch more interaction.
+                        It wraps knowledge, skill and luck into a single stylish whole.
+                        It’s all about what you know, what you think the other players know,
+                        and how well you know your friends.
                     </p>
                     <p>
-                        Integer a ex scelerisque, pharetra magna in, eleifend turpis.
-                        Integer imperdiet lacinia dui in dictum. Praesent vehicula vel
-                        lectus non accumsan. Class aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per inceptos himenaeos. Sed vitae commodo metus.
-                        Nam interdum et ipsum finibus laoreet. Quisque at elit augue.
+                        This online game points calculator was made to make your iKNOW board game
+                        playing experience much easier and faster!
+                        Forget about wasting minutes after every round to correctly calculate
+                        the points of each player.
+                        With this easy to use calculator you will be able to save playing time
+                        (which means you can play more matches), calculate each rounds outcome
+                        and track everyones score!
+                        When one of the players collects points needed to win the game, it will
+                        automatically end, announcing the winner and showing the final results.
                     </p>
                     <p>
-                        Phasellus molestie, ligula vestibulum feugiat bibendum, metus ex vulputate
-                        dolor, ac consequat ex lorem a augue. Vivamus et dignissim elit. Phasellus
-                        at ipsum consectetur, tristique ligula sed, mollis quam. Sed mauris purus,
-                        finibus sed nisl at, vehicula porttitor metus. Ut mauris leo, lobortis at
-                        molestie eu, mattis eget urna. Aliquam laoreet sapien mauris, ut dignissim
-                        mauris faucibus eget. Pellentesque condimentum mauris nisl, et
-                        vulputate sapien fermentum ac. Cras at libero rhoncus, porta felis in,
-                        facilisis sapien. In ullamcorper velit sit amet semper blandit.
-                        Nam mollis orci id pretium iaculis. Suspendisse lorem lacus, semper ut
-                        augue nec, egestas dignissim erat.
+                        So what are you waiting for? Pick a friend who will administrate the
+                        calculator, set it up and <a href="/game/players">start</a> the game.
+                    </p>
+                    <p>
+                        If you are not familiar with the iKNOW board game instructions
+                        you should read the original instructions
+                        <a
+                            target="_blank"
+                            href="http://www.tactic.net/iknow/eng/miten_pelaan.php"
+                        >here</a>.
                     </p>
                 </div>
+            </div>
+
+            <div class="md-layout-item md-size-100">
+                <md-divider></md-divider>
             </div>
 
             <div
@@ -49,7 +51,7 @@
                 class="md-layout-item md-layout md-size-100"
             >
                 <h1 class="md-layout-item md-size-100">
-                    How to use
+                    How to use it?
                 </h1>
 
                 <div class="md-layout-item md-layout md-gutter md-size-100">
@@ -60,8 +62,11 @@
                             </md-card-media>
 
                             <md-card-content>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Optio itaque ea nostrum.
+                                While your friends prepares the board and questions,
+                                add all your friends to the list by typing in their names
+                                and assigning them their picked figurines colors.
+                                To continue just press the red action button
+                                on the bottom left corner.
                             </md-card-content>
                         </md-card>
                     </div>
@@ -73,7 +78,10 @@
                             </md-card-media>
 
                             <md-card-content>
-                                Integer a ex scelerisque, pharetra magna in, eleifend turpis.
+                                The game shows who picks the category and reads the question.
+                                While your friends places iKNOW and iBET figures on the board,
+                                you do the same in the calculator.
+                                Figures placing order in the calculator starts from the card reader.
                             </md-card-content>
                         </md-card>
                     </div>
@@ -85,9 +93,10 @@
                             </md-card-media>
 
                             <md-card-content>
-                                Phasellus molestie, ligula vestibulum feugiat bibendum,
-                                metus ex vulputate dolor, ac consequat ex lorem a augue.
-                                Vivamus et dignissim elit.
+                                After the card reader tells the correct answer, check the iKNOW
+                                figures of those who answered correctly. Click the action
+                                button and give or take the tokens from players based on the
+                                shown round results.
                             </md-card-content>
                         </md-card>
                     </div>
