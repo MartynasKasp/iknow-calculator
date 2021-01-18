@@ -58,10 +58,12 @@
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
                             <md-card-media>
-                                <img src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" alt="First step">
+                                <img src="/img/step1.png" alt="First step">
                             </md-card-media>
 
                             <md-card-content>
+                                <div class="Home__HowToNumber md-elevation-2">1</div>
+
                                 While your friends prepares the board and questions,
                                 add all your friends to the list by typing in their names
                                 and assigning them their picked figurines colors.
@@ -74,10 +76,12 @@
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
                             <md-card-media>
-                                <img src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" alt="First step">
+                                <img src="/img/step2.png" alt="First step">
                             </md-card-media>
 
                             <md-card-content>
+                                <div class="Home__HowToNumber md-elevation-2">2</div>
+
                                 The game shows who picks the category and reads the question.
                                 While your friends places iKNOW and iBET figures on the board,
                                 you do the same in the calculator.
@@ -89,10 +93,12 @@
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
                             <md-card-media>
-                                <img src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" alt="First step">
+                                <img src="/img/step3.png" alt="First step">
                             </md-card-media>
 
                             <md-card-content>
+                                <div class="Home__HowToNumber md-elevation-2">3</div>
+
                                 After the card reader tells the correct answer, check the iKNOW
                                 figures of those who answered correctly. Click the action
                                 button and give or take the tokens from players based on the

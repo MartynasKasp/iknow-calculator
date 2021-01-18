@@ -37,6 +37,28 @@
         .md-divider {
             margin: 24px 0;
         }
+
+        div.md-card-content {
+            position: relative;
+            padding-top: 40px;
+
+            .Home__HowToNumber {
+                height: 56px;
+                width: 56px;
+                border: 1px solid $colorGrey;
+                border-radius: 50%;
+                background-color: $colorWhite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                position: absolute;
+                top: -28px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+        }
     }
 
     .Home__FooterContainer {
@@ -87,7 +109,7 @@
         }
 
         .Home__FooterContainer {
-            padding: 0 8px;
+            padding: 16px 8px;
         }
     }
 }
