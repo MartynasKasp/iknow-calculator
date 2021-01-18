@@ -2,7 +2,7 @@ import Vue from 'vue';
 import {
     MdButton, MdField, MdMenu, MdList,
     MdSnackbar, MdIcon, MdDialog, MdApp,
-    MdToolbar, MdContent, MdCard,
+    MdToolbar, MdContent, MdCard, MdDivider,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
@@ -24,6 +24,7 @@ Vue.use(MdApp);
 Vue.use(MdToolbar);
 Vue.use(MdContent);
 Vue.use(MdCard);
+Vue.use(MdDivider);
 
 new Vue({
     router,

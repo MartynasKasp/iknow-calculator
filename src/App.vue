@@ -1,8 +1,26 @@
 <template>
     <div id="app">
+        <Navigation v-if="displayNavbar" />
+
         <router-view class="App__Layout" />
     </div>
 </template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+import Navigation from '@/views/Navigation/index.vue';
+
+@Component({
+    components: {
+        Navigation,
+    },
+})
+export default class App extends Vue {
+    get displayNavbar() {
+        return ['homepage'].includes(this.$route.name || '');
+    }
+}
+</script>
 
 <style lang="scss">
     html, body, #app {
@@ -19,7 +37,16 @@
     }
 
     #app {
-        font-family: 'Open Sans', 'Roboto';
+        font-family: -apple-system,
+            BlinkMacSystemFont,
+            'Segoe UI',
+            Roboto,
+            Oxygen,
+            Ubuntu,
+            Cantarell,
+            'Open Sans',
+            'Helvetica Neue',
+            sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
@@ -35,7 +62,6 @@
         background-color: $backgroundColor;
         display: flex;
         flex-direction: column;
-        // padding: 0 0 72px 0;
 
         > div {
             flex: 0 1 auto;

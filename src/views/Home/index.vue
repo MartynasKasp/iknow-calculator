@@ -2,6 +2,11 @@
     <div class="Home__Container">
         <Header />
         <Content />
+        <div class="Home__FooterContainer md-layout md-gutter">
+            <div class="md-layout-item md-layout md-size-100">
+                Footer
+            </div>
+        </div>
     </div>
 </template>
 

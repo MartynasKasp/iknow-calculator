@@ -1,7 +1,10 @@
 <template>
     <div class="Home__ContentContainer md-layout md-gutter">
         <div class="md-layout-item md-layout md-size-100">
-            <div class="md-layout-item md-layout md-size-100">
+            <div
+                id="about"
+                class="md-layout-item md-layout md-size-100"
+            >
                 <h1 class="md-layout-item md-size-100">
                     About
                 </h1>
@@ -41,7 +44,10 @@
                 </div>
             </div>
 
-            <div class="md-layout-item md-layout md-size-100">
+            <div
+                id="how-to-use"
+                class="md-layout-item md-layout md-size-100"
+            >
                 <h1 class="md-layout-item md-size-100">
                     How to use
                 </h1>

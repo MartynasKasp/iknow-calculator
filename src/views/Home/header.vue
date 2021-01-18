@@ -1,22 +1,20 @@
 <template>
     <div class="Home__HeaderContainer">
-        <md-toolbar class="Home__Navigation md-primary" md-elevation="2">
-            <h2 class="md-title">
-                iKnow Calculator
-            </h2>
-            <div class="md-toolbar-section-end">
-                <md-button
-                    @click="handleGameStart"
-                    class="md-raised"
-                >
-                    Start game
-                </md-button>
-            </div>
-        </md-toolbar>
-
         <div id="PageIntro" class="Home__MaskView">
             <div class="Home__Mask">
-
+                <div class="Home__MaskContent md-layout md-gutter">
+                    <div class="md-layout-item md-layout md-size-100 md-alignment-center-center">
+                        <div class="md-layout-item md-small-size-100 md-medium-size-50 md-size-30">
+                            <h2>
+                                iKnow Calculator
+                            </h2>
+                            <hr/>
+                            <h5>
+                                iKNOW board game playing made easier and faster!
+                            </h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -27,8 +25,6 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class Header extends Vue {
-    handleGameStart() {
-        this.$router.push({ name: 'game' });
-    }
+
 }
 </script>
