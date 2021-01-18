@@ -1,11 +1,7 @@
 <template>
     <div class="md-layout">
         <div class="md-layout-item">
-            <h1>Game end screen</h1>
-        </div>
-
-        <div class="md-layout-item">
-            <h2>{{ gameWinner }} won the game</h2>
+            <h4>{{ gameWinner }} won the game</h4>
         </div>
 
         <div class="md-layout-item">

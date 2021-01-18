@@ -2,11 +2,7 @@
     <div class="Home__Container">
         <Header />
         <Content />
-        <div class="Home__FooterContainer md-layout md-gutter">
-            <div class="md-layout-item md-layout md-size-100">
-                Footer
-            </div>
-        </div>
+        <Footer />
     </div>
 </template>
 
@@ -14,11 +10,13 @@
 import { Vue, Component } from 'vue-property-decorator';
 import Header from './header.vue';
 import Content from './content.vue';
+import Footer from './footer.vue';
 
 @Component({
     components: {
         Header,
         Content,
+        Footer,
     },
 })
 export default class Home extends Vue {

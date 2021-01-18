@@ -1,6 +1,6 @@
 <template>
     <div class="md-layout-item md-layout md-gutter md-size-100 PlayersSetup__ListContainer">
-        <h2 class="md-layout-item md-size-100">Players list</h2>
+        <h5 class="md-layout-item md-size-100">Players list</h5>
 
         <p
             class="md-layout-item"

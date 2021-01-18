@@ -1,7 +1,7 @@
 <template>
     <div class="md-layout-item md-layout md-gutter md-size-100 md-alignment-top-center">
         <div class="md-layout-item md-size-100">
-            <h1>Add players to game</h1>
+            <h4>Add players to game</h4>
         </div>
 
         <div class="md-layout-item md-small-size-100 md-size-20">
