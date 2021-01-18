@@ -109,7 +109,7 @@ export default class Board extends Vue {
         await playerModule.calculatePoints(this.gameBoardBox);
         if (await playerModule.isGameOver()) {
             gameModule.setGameStatus(GameStatusType.gameEnd);
-            this.$router.push({ name: 'game' });
+            this.$router.push({ name: 'gameEnd' });
         } else {
             boardModule.toggleResultsDialog();
         }

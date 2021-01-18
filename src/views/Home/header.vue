@@ -5,7 +5,12 @@
                 iKnow Calculator
             </h2>
             <div class="md-toolbar-section-end">
-                <md-button class="md-raised">Start game</md-button>
+                <md-button
+                    @click="handleGameStart"
+                    class="md-raised"
+                >
+                    Start game
+                </md-button>
             </div>
         </md-toolbar>
 
@@ -22,6 +27,8 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class Header extends Vue {
-
+    handleGameStart() {
+        this.$router.push({ name: 'game' });
+    }
 }
 </script>
