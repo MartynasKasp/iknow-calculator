@@ -31,6 +31,8 @@ export class Player extends VuexModule {
 
     private readerIndex: number = 0;
 
+    private categoryPicker: number = -1;
+
     private knowFigures: PlayerType[] = [];
 
     private betFigures: PlayerType[] = [];
@@ -105,6 +107,11 @@ export class Player extends VuexModule {
         this.betFigures = [...data];
     }
 
+    @Mutation
+    private setCategoryPicker(index: number) {
+        this.categoryPicker = index;
+    }
+
     @Action
     public getNextReader() {
         if (this.readerIndex + 1 === this.players.length) {
@@ -163,6 +170,7 @@ export class Player extends VuexModule {
     public completePlayerSetup() {
         this.resetReaderIndex();
         this.setFigures();
+        this.setCategoryPicker(0);
     }
 
     @Action
@@ -175,10 +183,13 @@ export class Player extends VuexModule {
     }
 
     @Action
-    public startNextRound() {
+    public async startNextRound() {
         this.resetRoundResults();
         this.getNextReader();
         this.setFigures();
+        if (this.categoryPicker === -1) {
+            this.setCategoryPicker(this.readerIndex);
+        }
     }
 
     @Action
@@ -189,6 +200,7 @@ export class Player extends VuexModule {
 
     @Action
     public async calculatePoints(board: BoardBoxType[]) {
+        this.setCategoryPicker(-1);
         await this.calculateRoundResult(board);
         this.addRoundPoints();
     }
@@ -203,6 +215,10 @@ export class Player extends VuexModule {
                     .find((p) => p.color === row.playerKnowFigure?.color);
 
                 if (player) {
+                    if (this.categoryPicker === -1) {
+                        this.setCategoryPicker(this.players.indexOf(player));
+                    }
+
                     player.roundResult += row.points;
                 }
             }

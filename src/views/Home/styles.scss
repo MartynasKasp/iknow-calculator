@@ -5,7 +5,11 @@
 }
 
 .Home__Container {
+    color: $textColorDark;
+
     .Home__HeaderContainer {
+        background-color: $colorWhite;
+
         #PageIntro {
             background: url('/img/iknow.jpg') center center;
             -webkit-background-size: cover;
@@ -29,6 +33,7 @@
     .Home__ContentContainer {
         padding: 0 148px;
         text-align: justify;
+        background-color: $colorWhite;
 
         h1 {
             text-align: center;
@@ -62,42 +67,46 @@
     }
 
     .Home__FooterContainer {
-        min-height: 250px;
-        background-color: $colorDark;
-        color: $colorWhite;
-        margin-top: 124px;
-        padding: 32px 148px 0;
+        background-color: $colorWhite;
 
-        div {
-            text-align: left;
-        }
+        .Home__FooterContent {
+            min-height: 250px;
+            background-color: $colorDark;
+            color: $colorWhite;
+            margin-top: 124px;
+            padding: 32px 148px 0;
 
-        .body2 {
-            color: $colorLight;
-        }
+            div {
+                text-align: left;
+            }
 
-        ul.body2 {
-            list-style-type: none;
-            padding: 0;
-
-            a {
-                text-decoration: none;
+            .body2 {
                 color: $colorLight;
             }
+
+            ul.body2 {
+                list-style-type: none;
+                padding: 0;
+
+                a {
+                    text-decoration: none;
+                    color: $colorLight;
+                }
+            }
         }
-    }
 
-    .Home__FooterCopyright {
-        height: 48px;
-        background-color: $colorDarker;
-        color: $colorWhite;
+        .Home__FooterCopyright {
+            height: 48px;
+            background-color: $colorDarker;
+            color: $colorWhite;
 
-        a {
-            color: $colorLight;
-        }
+            a {
+                color: $colorLight;
+            }
 
-        > div {
-            margin: auto 0;
+            > div {
+                margin: auto 0;
+            }
         }
     }
 }
@@ -108,7 +117,7 @@
             padding: 0 8px;
         }
 
-        .Home__FooterContainer {
+        .Home__FooterContent {
             padding: 16px 8px;
         }
     }

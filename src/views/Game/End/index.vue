@@ -1,15 +1,22 @@
 <template>
-    <div class="md-layout">
+    <div class="GameEnd__Container">
         <div class="md-layout-item">
-            <h4>{{ gameWinner }} won the game</h4>
+            <h4>{{ gameWinner }} has won the game!</h4>
         </div>
 
-        <div class="md-layout-item">
+        <div class="GameEnd__PlayersList md-layout-item">
             <div
+                class="GameEnd__PlayerItem"
                 v-for="player in sortedPlayers"
                 :key="player.color"
             >
-                {{ player.name }} {{ player.points }}
+                <div class="GameEnd__PlayerColor" :style="elementStyle(player.color)">
+                </div>
+                <p>
+                    <strong>{{ player.name }}</strong>
+                    ended the game with
+                    <strong>{{ player.points }}</strong> points.
+                </p>
             </div>
         </div>
     </div>
@@ -37,7 +44,7 @@ export default class GameEnd extends Vue {
 
     mounted() {
         party.screen({
-            count: 100,
+            count: 400,
         });
     }
 
@@ -48,5 +55,13 @@ export default class GameEnd extends Vue {
     get gameWinner() {
         return this.sortedPlayers[0].name;
     }
+
+    elementStyle(color: string) {
+        return { 'background-color': `#${color}` };
+    }
 }
 </script>
+
+<style lang="scss">
+    @import './styles.scss';
+</style>

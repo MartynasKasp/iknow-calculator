@@ -46,7 +46,7 @@ export default class ResultsDialog extends Vue {
     }
 
     async onConfirm() {
-        playerModule.startNextRound();
+        await playerModule.startNextRound();
         boardModule.startNextRound();
     }
 }

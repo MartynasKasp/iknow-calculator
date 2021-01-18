@@ -2,9 +2,14 @@
     <div class="md-layout md-gutter">
         <div class="md-layout-item md-layout md-size-100">
             <div class="md-layout-item">
-                <p v-if="figuresSetup" class="md-subheading">
-                    <strong>{{ readerName }}</strong> reads the card this round.
-                </p>
+                <div v-if="figuresSetup">
+                    <p class="md-subheading">
+                        <strong>{{ picksCategory }}</strong> picks the category.
+                    </p>
+                    <p class="md-subheading">
+                        <strong>{{ readerName }}</strong> reads the card this round.
+                    </p>
+                </div>
                 <p v-else class="md-subheading">
                     Check <strong>iKnow</strong> figures of those, who answered correctly.
                 </p>
@@ -69,6 +74,8 @@ export default class Board extends Vue {
 
     @Get(playerModule) private readerIndex!: number;
 
+    @Get(playerModule) private categoryPicker!: number;
+
     @Sync(boardModule) private showBetSnackbar!: boolean;
 
     @Get(boardModule) private boardStatus!: BoardStatusType;
@@ -89,6 +96,10 @@ export default class Board extends Vue {
 
     get readerName(): string {
         return this.players[this.readerIndex].name;
+    }
+
+    get picksCategory(): string {
+        return this.players[this.categoryPicker].name;
     }
 
     get figuresSetup() {
