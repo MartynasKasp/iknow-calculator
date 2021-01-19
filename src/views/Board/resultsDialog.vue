@@ -1,5 +1,9 @@
 <template>
-    <md-dialog :md-active.sync="active">
+    <md-dialog
+        :md-active.sync="active"
+        :md-close-on-esc="false"
+        :md-click-outside-to-close="false"
+    >
         <md-dialog-title>Round results</md-dialog-title>
 
         <md-dialog-content>
@@ -18,7 +22,7 @@
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button class="md-primary" @click="onConfirm">Next round</md-button>
+            <md-button @click="onConfirm">Next round</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>

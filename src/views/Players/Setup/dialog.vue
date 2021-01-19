@@ -1,6 +1,6 @@
 <template>
     <md-dialog :md-active.sync="active">
-        <md-dialog-title>Are you sure?</md-dialog-title>
+        <md-dialog-title>Start the game?</md-dialog-title>
 
         <md-dialog-content>
             You are about to start the game with <strong>{{ count }} players</strong>.
@@ -8,7 +8,7 @@
 
         <md-dialog-actions>
             <md-button @click="active = false">Close</md-button>
-            <md-button class="md-primary" @click="onConfirm">Start</md-button>
+            <md-button @click="onConfirm">Start</md-button>
         </md-dialog-actions>
     </md-dialog>
 </template>

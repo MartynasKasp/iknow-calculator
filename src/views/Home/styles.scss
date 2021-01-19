@@ -6,9 +6,10 @@
 
 .Home__Container {
     color: $textColorDark;
+    margin-top: 64px;
 
     .Home__HeaderContainer {
-        background-color: $colorWhite;
+        background-color: $backgroundColor;
 
         #PageIntro {
             background: url('/img/iknow.jpg') center center;
@@ -25,6 +26,12 @@
                     height: 100%;
                     color: $colorWhite;
                     text-shadow: 2px 2px #000;
+
+                    div {
+                        > h5 {
+                            margin-top: 24px;
+                        }
+                    }
                 }
             }
         }
@@ -33,7 +40,7 @@
     .Home__ContentContainer {
         padding: 0 148px;
         text-align: justify;
-        background-color: $colorWhite;
+        background-color: $backgroundColor;
 
         h1 {
             text-align: center;
@@ -41,11 +48,14 @@
 
         .md-divider {
             margin: 24px 0;
+            background-color: $colorDark;
         }
 
         div.md-card-content {
             position: relative;
             padding-top: 40px;
+            background-color: $colorWhite;
+            color: $textColorDark;
 
             .Home__HowToNumber {
                 height: 56px;
@@ -62,12 +72,13 @@
                 left: 0;
                 right: 0;
                 margin: 0 auto;
+                color: $textColorDark;
             }
         }
     }
 
     .Home__FooterContainer {
-        background-color: $colorWhite;
+        background-color: $backgroundColor;
 
         .Home__FooterContent {
             min-height: 250px;
@@ -113,6 +124,8 @@
 
 @media (max-width: $small) {
     .Home__Container {
+        margin-top: 48px;
+
         .Home__ContentContainer {
             padding: 0 8px;
         }
