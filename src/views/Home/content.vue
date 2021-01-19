@@ -57,7 +57,7 @@
                 <div class="md-layout-item md-layout md-gutter md-size-100">
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
-                            <md-card-media>
+                            <md-card-media md-ratio="4:3">
                                 <img src="/img/step1.png" alt="First step">
                             </md-card-media>
 
@@ -75,7 +75,7 @@
 
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
-                            <md-card-media>
+                            <md-card-media md-ratio="4:3">
                                 <img src="/img/step2.png" alt="First step">
                             </md-card-media>
 
@@ -92,7 +92,7 @@
 
                     <div class="md-layout-item md-small-size-100 md-size-33">
                         <md-card>
-                            <md-card-media>
+                            <md-card-media md-ratio="4:3">
                                 <img src="/img/step3.png" alt="First step">
                             </md-card-media>
 

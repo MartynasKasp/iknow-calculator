@@ -80,6 +80,14 @@
     .Home__FooterContainer {
         background-color: $backgroundColor;
 
+        a {
+            border-bottom: none;
+
+            &:hover {
+                border-bottom: 1px dotted $colorLight;
+            }
+        }
+
         .Home__FooterContent {
             min-height: 250px;
             background-color: $colorDark;
@@ -113,6 +121,7 @@
 
             a {
                 color: $colorLight;
+                text-decoration: none;
             }
 
             > div {
@@ -128,10 +137,20 @@
 
         .Home__ContentContainer {
             padding: 0 8px;
+
+            div {
+                &:not(:last-of-type) {
+                    > div.md-card {
+                        margin-bottom: 16px;
+                    }
+                }
+            }
         }
 
-        .Home__FooterContent {
-            padding: 16px 8px;
+        .Home__FooterContainer {
+            .Home__FooterContent {
+                padding: 16px 8px;
+            }
         }
     }
 }

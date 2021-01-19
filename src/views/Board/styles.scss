@@ -1,6 +1,14 @@
 .Board__RoundInfo {
     padding: 16px 0;
     margin: 0 auto;
+
+    div.md-card {
+        div.md-card-content {
+            &:last-of-type {
+                padding-bottom: 16px;
+            }
+        }
+    }
 }
 
 .Board__Container {

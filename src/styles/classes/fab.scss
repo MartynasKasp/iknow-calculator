@@ -1,3 +1,14 @@
+.md-speed-dial {
+    position: absolute;
+    bottom: 78px;
+    left: 24px;
+
+    .md-fab {
+        bottom: -60px;
+        left: -8px;
+    }
+}
+
 .md-fab {
     position: absolute;
     bottom: 16px;

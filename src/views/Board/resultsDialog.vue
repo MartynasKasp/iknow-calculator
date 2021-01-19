@@ -41,8 +41,7 @@ export default class ResultsDialog extends Vue {
     @Sync(boardModule, 'showCalculationResultDialog') private active!: boolean;
 
     get roundResults() {
-        const result = [...this.players];
-        return result.sort((a, b) => (a.roundResult > b.roundResult ? -1 : 1));
+        return [...this.players].sort((a, b) => (a.roundResult > b.roundResult ? -1 : 1));
     }
 
     elementStyle(color: string) {
