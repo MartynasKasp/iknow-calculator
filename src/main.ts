@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import VueMeta from 'vue-meta';
 import {
     MdButton, MdField, MdMenu, MdList,
     MdSnackbar, MdIcon, MdDialog, MdApp,
@@ -15,7 +14,6 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
-Vue.use(VueMeta);
 Vue.use(MdButton);
 Vue.use(MdField);
 Vue.use(MdMenu);
@@ -34,16 +32,4 @@ new Vue({
     router,
     store,
     render: (h) => h(App),
-    metaInfo: () => ({
-        title: 'Home',
-        titleTemplate: '%s | iKNOW Points Calculator',
-        htmlAttrs: {
-            lang: 'en',
-        },
-        meta: [
-            { name: 'description', content: 'iKNOW board game playing made easier and faster!' },
-            { name: 'author', content: 'MartynasKasp' },
-            { name: 'keywords', content: 'iknow, iknow board game, iknow calculator, iknow board game calculator, iknow points calculator, iknow points, iknow online, iknow points online, iknow game, iknow board, martynaskasp, tactic, tactic iknow' },
-        ],
-    }),
 }).$mount('#app');
