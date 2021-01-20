@@ -39,7 +39,9 @@ new Vue({
             lang: 'en',
         },
         meta: [
-            { name: 'iKNOW Points Calculator', content: 'iKNOW board game playing made easier and faster!' },
+            { name: 'description', content: 'iKNOW board game playing made easier and faster!' },
+            { name: 'author', content: 'MartynasKasp' },
+            { name: 'keywords', content: 'iknow, iknow board game, iknow calculator, iknow board game calculator, iknow points calculator, iknow points, iknow online, iknow points online, iknow game, iknow board, martynaskasp, tactic, tactic iknow' },
         ],
     }),
 }).$mount('#app');
