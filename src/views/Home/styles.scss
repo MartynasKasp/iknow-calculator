@@ -5,7 +5,12 @@
 }
 
 .Home__Container {
+    color: $textColorDark;
+    margin-top: 64px;
+
     .Home__HeaderContainer {
+        background-color: $backgroundColor;
+
         #PageIntro {
             background: url('/img/iknow.jpg') center center;
             -webkit-background-size: cover;
@@ -21,6 +26,12 @@
                     height: 100%;
                     color: $colorWhite;
                     text-shadow: 2px 2px #000;
+
+                    div {
+                        > h5 {
+                            margin-top: 24px;
+                        }
+                    }
                 }
             }
         }
@@ -29,6 +40,7 @@
     .Home__ContentContainer {
         padding: 0 148px;
         text-align: justify;
+        background-color: $backgroundColor;
 
         h1 {
             text-align: center;
@@ -36,58 +48,109 @@
 
         .md-divider {
             margin: 24px 0;
-        }
-    }
-
-    .Home__FooterContainer {
-        min-height: 250px;
-        background-color: $colorDark;
-        color: $colorWhite;
-        margin-top: 124px;
-        padding: 32px 148px 0;
-
-        div {
-            text-align: left;
+            background-color: $colorDark;
         }
 
-        .body2 {
-            color: $colorLight;
-        }
+        div.md-card-content {
+            position: relative;
+            padding-top: 40px;
+            background-color: $colorWhite;
+            color: $textColorDark;
 
-        ul.body2 {
-            list-style-type: none;
-            padding: 0;
-
-            a {
-                text-decoration: none;
-                color: $colorLight;
+            .Home__HowToNumber {
+                height: 56px;
+                width: 56px;
+                border: 1px solid $colorGrey;
+                border-radius: 50%;
+                background-color: $colorWhite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                position: absolute;
+                top: -28px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                color: $textColorDark;
             }
         }
     }
 
-    .Home__FooterCopyright {
-        height: 48px;
-        background-color: $colorDarker;
-        color: $colorWhite;
+    .Home__FooterContainer {
+        background-color: $backgroundColor;
 
         a {
-            color: $colorLight;
+            border-bottom: none;
+
+            &:hover {
+                border-bottom: 1px dotted $colorLight;
+            }
         }
 
-        > div {
-            margin: auto 0;
+        .Home__FooterContent {
+            min-height: 250px;
+            background-color: $colorDark;
+            color: $colorWhite;
+            margin-top: 124px;
+            padding: 32px 148px 0;
+
+            div {
+                text-align: left;
+            }
+
+            .body2 {
+                color: $colorLight;
+            }
+
+            ul.body2 {
+                list-style-type: none;
+                padding: 0;
+
+                a {
+                    text-decoration: none;
+                    color: $colorLight;
+                }
+            }
+        }
+
+        .Home__FooterCopyright {
+            height: 48px;
+            background-color: $colorDarker;
+            color: $colorWhite;
+
+            a {
+                color: $colorLight;
+                text-decoration: none;
+            }
+
+            > div {
+                margin: auto 0;
+            }
         }
     }
 }
 
 @media (max-width: $small) {
     .Home__Container {
+        margin-top: 48px;
+
         .Home__ContentContainer {
             padding: 0 8px;
+
+            div {
+                &:not(:last-of-type) {
+                    > div.md-card {
+                        margin-bottom: 16px;
+                    }
+                }
+            }
         }
 
         .Home__FooterContainer {
-            padding: 0 8px;
+            .Home__FooterContent {
+                padding: 16px 8px;
+            }
         }
     }
 }

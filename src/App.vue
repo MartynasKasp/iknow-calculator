@@ -59,7 +59,7 @@ export default class App extends Vue {
     .App__Layout {
         flex-grow: 1;
         overflow: auto;
-        background-color: $backgroundColor;
+        background-color: $backgroundColorDark;
         display: flex;
         flex-direction: column;
 

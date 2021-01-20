@@ -1,8 +1,12 @@
 $colorWhite: #fff;
-$colorGrey: rgb(143, 143, 143);
+$colorGrey: rgb(185, 185, 185);
+$colorLightGrey: rgb(246, 246, 246);
 $colorDark: #1c2331;
 $colorDarker: #131620;
 $colorLight: #92ccff;
+$colorPrimary: #448aff;
 
-$backgroundColor: $colorWhite;
-$textColor: #2c3e50;
+$backgroundColorDark: $colorDark;
+$backgroundColor: $colorLightGrey;
+$textColor: $colorWhite;
+$textColorDark: #2c3e50;

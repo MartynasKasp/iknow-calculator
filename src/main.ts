@@ -4,9 +4,10 @@ import {
     MdButton, MdField, MdMenu, MdList,
     MdSnackbar, MdIcon, MdDialog, MdApp,
     MdToolbar, MdContent, MdCard, MdDivider,
+    MdSpeedDial,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
-import 'vue-material/dist/theme/default.css';
+import 'vue-material/dist/theme/default-dark.css';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -27,6 +28,7 @@ Vue.use(MdToolbar);
 Vue.use(MdContent);
 Vue.use(MdCard);
 Vue.use(MdDivider);
+Vue.use(MdSpeedDial);
 
 new Vue({
     router,

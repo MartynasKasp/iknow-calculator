@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <div class="Home__FooterContainer md-layout md-gutter">
+    <div class="Home__FooterContainer">
+        <div class="Home__FooterContent md-layout md-gutter">
             <div class="md-layout-item md-layout md-size-100">
-                <div class="md-layout-item md-layout md-size-50">
+                <div class="md-layout-item md-layout md-small-size-100 md-size-50">
                     <div>
                         <span class="subtitle1">
                             iKNOW Points Calculator
@@ -12,7 +12,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="md-layout-item md-layout md-size-25">
+                <div class="md-layout-item md-layout md-small-size-50 md-size-25">
                     <div>
                         <span class="subtitle1">
                             Menu
@@ -30,7 +30,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="md-layout-item md-layout md-size-25">
+                <div class="md-layout-item md-layout md-small-size-50 md-size-25">
                     <div>
                         <span class="subtitle1">
                             Links
@@ -61,7 +61,7 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component
 export default class Footer extends Vue {
     get gameStartUrl() {
-        return '#';
+        return this.$router.resolve({ name: 'playersSetup' }).href;
     }
 }
 </script>
