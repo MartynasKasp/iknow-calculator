@@ -14,7 +14,6 @@ module.exports = {
         port: '3000',
         https: false,
     },
-    publicPath: process.env.NODE_ENV === 'production' ? '/iknow/' : '/',
     configureWebpack: {
         plugins: [
             new PrerenderSPAPlugin({
