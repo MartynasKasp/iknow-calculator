@@ -31,6 +31,8 @@ export class Player extends VuexModule {
 
     private readerIndex: number = 0;
 
+    private categoryPicker: number = -1;
+
     private knowFigures: PlayerType[] = [];
 
     private betFigures: PlayerType[] = [];
@@ -46,7 +48,7 @@ export class Player extends VuexModule {
     }
 
     @Mutation
-    private setPlayersData(data: PlayerType[]) {
+    private setPlayersData(data: PlayerType[] = []) {
         this.players = [...data];
     }
 
@@ -68,6 +70,11 @@ export class Player extends VuexModule {
     @Mutation
     public toggleSetupCompleteDialog() {
         this.showSetupCompleteDialog = !this.showSetupCompleteDialog;
+    }
+
+    @Mutation
+    public setSetupCompleteDialog(status: boolean) {
+        this.showSetupCompleteDialog = status;
     }
 
     @Mutation
@@ -96,6 +103,11 @@ export class Player extends VuexModule {
     }
 
     @Mutation
+    private setReaderIndex(index: number) {
+        this.readerIndex = index;
+    }
+
+    @Mutation
     private setKnowFigures(data: PlayerType[]) {
         this.knowFigures = [...data];
     }
@@ -103,6 +115,27 @@ export class Player extends VuexModule {
     @Mutation
     private setBetFigures(data: PlayerType[]) {
         this.betFigures = [...data];
+    }
+
+    @Mutation
+    private setCategoryPicker(index: number) {
+        this.categoryPicker = index;
+    }
+
+    @Action
+    public async restartGame() {
+        const winner = this.players.find((player) => player.points >= POINTS_WINNER);
+        let winnerIndex = 0;
+        if (winner) {
+            winnerIndex = this.players.indexOf(winner);
+        }
+        this.setPlayersData(
+            this.players
+                .map((player) => ({ ...player, points: 1, roundResult: 0 })),
+        );
+        this.setReaderIndex(winnerIndex);
+        this.setFigures();
+        this.setCategoryPicker(winnerIndex);
     }
 
     @Action
@@ -163,6 +196,7 @@ export class Player extends VuexModule {
     public completePlayerSetup() {
         this.resetReaderIndex();
         this.setFigures();
+        this.setCategoryPicker(0);
     }
 
     @Action
@@ -175,10 +209,13 @@ export class Player extends VuexModule {
     }
 
     @Action
-    public startNextRound() {
+    public async startNextRound() {
         this.resetRoundResults();
         this.getNextReader();
         this.setFigures();
+        if (this.categoryPicker === -1) {
+            this.setCategoryPicker(this.readerIndex);
+        }
     }
 
     @Action
@@ -189,6 +226,7 @@ export class Player extends VuexModule {
 
     @Action
     public async calculatePoints(board: BoardBoxType[]) {
+        this.setCategoryPicker(-1);
         await this.calculateRoundResult(board);
         this.addRoundPoints();
     }
@@ -203,6 +241,10 @@ export class Player extends VuexModule {
                     .find((p) => p.color === row.playerKnowFigure?.color);
 
                 if (player) {
+                    if (this.categoryPicker === -1) {
+                        this.setCategoryPicker(this.players.indexOf(player));
+                    }
+
                     player.roundResult += row.points;
                 }
             }
@@ -260,6 +302,12 @@ export class Player extends VuexModule {
         }
 
         return false;
+    }
+
+    @Action
+    public clearGame() {
+        this.setPlayersData();
+        this.setSetupCompleteDialog(false);
     }
 }
 

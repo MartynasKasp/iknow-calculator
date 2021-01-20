@@ -58,6 +58,12 @@ export class Board extends VuexModule {
         this.resetGameBoard();
         this.toggleResultsDialog();
     }
+
+    @Action
+    public async restartGame() {
+        this.setBoardStatus(BoardStatusType.figuresSetup);
+        this.resetGameBoard();
+    }
 }
 
 export default getModule(Board);

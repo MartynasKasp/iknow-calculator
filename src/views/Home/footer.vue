@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="Home__FooterContainer md-layout md-gutter">
+    <div class="Home__FooterContainer">
+        <div class="Home__FooterContent md-layout md-gutter">
             <div class="md-layout-item md-layout md-size-100">
                 <div class="md-layout-item md-layout md-small-size-100 md-size-50">
                     <div>
@@ -61,7 +61,7 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component
 export default class Footer extends Vue {
     get gameStartUrl() {
-        return '#';
+        return this.$router.resolve({ name: 'playersSetup' }).href;
     }
 }
 </script>

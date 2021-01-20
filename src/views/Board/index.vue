@@ -1,13 +1,24 @@
 <template>
     <div class="md-layout md-gutter">
         <div class="md-layout-item md-layout md-size-100">
-            <div class="md-layout-item">
-                <p v-if="figuresSetup" class="md-subheading">
-                    <strong>{{ readerName }}</strong> reads the card this round.
-                </p>
-                <p v-else class="md-subheading">
-                    Check <strong>iKnow</strong> figures of those, who answered correctly.
-                </p>
+            <div class="
+                Board__RoundInfo
+                md-layout-item
+                md-xsmall-size-90
+                md-small-size-70
+                md-size-30"
+            >
+                <md-card v-if="figuresSetup">
+                    <md-card-content>
+                        <strong>{{ picksCategory }}</strong> picks the category.<br/>
+                        <strong>{{ readerName }}</strong> reads the card this round.
+                    </md-card-content>
+                </md-card>
+                <md-card v-else>
+                    <md-card-content>
+                        Check <strong>iKnow</strong> figures of those, who answered correctly.
+                    </md-card-content>
+                </md-card>
             </div>
 
             <GameBoard :gameBoardBox="gameBoardBox" />
@@ -69,6 +80,8 @@ export default class Board extends Vue {
 
     @Get(playerModule) private readerIndex!: number;
 
+    @Get(playerModule) private categoryPicker!: number;
+
     @Sync(boardModule) private showBetSnackbar!: boolean;
 
     @Get(boardModule) private boardStatus!: BoardStatusType;
@@ -89,6 +102,10 @@ export default class Board extends Vue {
 
     get readerName(): string {
         return this.players[this.readerIndex].name;
+    }
+
+    get picksCategory(): string {
+        return this.players[this.categoryPicker].name;
     }
 
     get figuresSetup() {

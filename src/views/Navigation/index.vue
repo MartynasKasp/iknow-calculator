@@ -18,7 +18,7 @@
         <div class="md-toolbar-section-end">
             <md-button
                 @click="handleGameStart"
-                class="md-raised"
+                class="Navigation__StartButton md-raised"
             >
                 Start game
             </md-button>
