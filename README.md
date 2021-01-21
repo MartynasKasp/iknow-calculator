@@ -8,7 +8,7 @@ This online game points calculator was made to make your iKNOW board game playin
 
 So what are you waiting for? Pick a friend who will administrate the calculator, set it up and [start](http://iknow.martynaskasp.lt/game/players) the game.
 
-If you are not familiar with the iKNOW board game instructions you should read the original instructions [here](http://www.tactic.net/iknow/eng/miten_pelaan.php).
+__If you are not familiar with the iKNOW board game instructions you should read the original instructions [here](http://www.tactic.net/iknow/eng/miten_pelaan.php).__
 
 ### How to use it?
 1. **Players setup**. 
