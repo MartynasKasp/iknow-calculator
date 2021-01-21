@@ -11,13 +11,13 @@ So what are you waiting for? Pick a friend who will administrate the calculator,
 If you are not familiar with the iKNOW board game instructions you should read the original instructions [here](http://www.tactic.net/iknow/eng/miten_pelaan.php).
 
 ### How to use it?
-1. Players setup
+1. **Players setup**. 
 While your friends prepares the board and questions, add all your friends to the list by typing in their names and assigning them their picked figurines colors. To continue just press the red action button on the bottom left corner.
 
-2. Figures placing
+2. **Figures placing**. 
 The game shows who picks the category and reads the question. While your friends places iKNOW and iBET figures on the board, you do the same in the calculator. Figures placing order in the calculator starts from the card reader.
 
-3. Answers check
+3. **Answers check**. 
 After the card reader tells the correct answer, check the iKNOW figures of those who answered correctly. Click the action button and give or take the tokens from players based on the shown round results.
 
 [Visit the website](http://iknow.martynaskasp.lt/)
