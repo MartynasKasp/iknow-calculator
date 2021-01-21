@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <md-speed-dial md-direction="top">
+        <md-speed-dial class="md-bottom-right" md-direction="top">
             <md-speed-dial-target>
                 <md-icon class="md-morph-initial">navigate_next</md-icon>
                 <md-icon class="md-morph-final">expand_less</md-icon>
@@ -62,7 +62,7 @@ export default class GameEnd extends Vue {
 
     mounted() {
         party.screen({
-            count: 400,
+            count: this.$el.clientWidth / 5,
         });
     }
 

@@ -2,7 +2,7 @@
     <div id="app">
         <Navigation v-if="displayNavbar" />
 
-        <router-view class="App__Layout" />
+        <router-view :class="elementClass" />
     </div>
 </template>
 
@@ -18,6 +18,14 @@ import Navigation from '@/views/Navigation/index.vue';
 export default class App extends Vue {
     get displayNavbar() {
         return ['homepage'].includes(this.$route.name || '');
+    }
+
+    get elementClass() {
+        return [
+            'App__Layout',
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            { App__GameLayout: !this.displayNavbar },
+        ];
     }
 }
 </script>
@@ -57,15 +65,14 @@ export default class App extends Vue {
     }
 
     .App__Layout {
-        flex-grow: 1;
         overflow: auto;
         background-color: $backgroundColorDark;
-        display: flex;
-        flex-direction: column;
+    }
 
-        > div {
-            flex: 0 1 auto;
-        }
+    .App__GameLayout {
+        padding-bottom: 72px;
+        flex-grow: 1;
+        flex-direction: column;
     }
 
     @font-face {

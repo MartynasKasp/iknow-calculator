@@ -1,6 +1,6 @@
 <template>
-    <div class="md-layout">
-        <div class="md-layout-item md-layout md-size-100">
+    <div class="PlayersSetup__Container">
+        <div class="md-layout-item">
             <PlayersSetupForm :players="players" />
             <PlayersSetupList :players="players" />
 
@@ -12,14 +12,15 @@
                 <span>Minimum amount of players is 2 people.</span>
             </md-snackbar>
 
-            <md-button
-                @click="handleGameStart"
-                class="md-fab">
-                <md-icon>navigate_next</md-icon>
-            </md-button>
-
             <PlayersSetupDialog :count="players.length" />
         </div>
+
+        <md-button
+            @click="handleGameStart"
+            class="md-fab Ui__FabBottomLeft"
+        >
+            <md-icon>navigate_next</md-icon>
+        </md-button>
     </div>
 </template>
 

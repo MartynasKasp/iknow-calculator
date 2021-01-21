@@ -1,15 +1,25 @@
-.PlayersSetup__ListItem {
-    padding: 8px;
+.PlayersSetup__Container {
+    padding-top: 48px;
 
-    .PlayersSetup__Player {
-        &Color {
-            width: 50px;
-            height: 50px;
+    .PlayersSetup__ListContainer {
+        h5 {
+            padding-top: 20px;
         }
 
-        &Name {
-            text-align: left;
-            padding-left: 24px;
+        .PlayersSetup__ListItem {
+            padding: 8px;
+
+            .PlayersSetup__Player {
+                &Color {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                &Name {
+                    text-align: left;
+                    padding-left: 24px;
+                }
+            }
         }
     }
 }
