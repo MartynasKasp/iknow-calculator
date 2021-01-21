@@ -67,6 +67,7 @@ export default class App extends Vue {
     .App__Layout {
         overflow: auto;
         background-color: $backgroundColorDark;
+        scroll-behavior: smooth;
     }
 
     .App__GameLayout {
