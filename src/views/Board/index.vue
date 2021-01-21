@@ -26,14 +26,14 @@
             <div class="md-layout-item">
                 <md-button
                     v-if="figuresSetup"
-                    class="md-accent md-fab"
+                    class="md-accent md-fab Ui__FabBottomLeft"
                     @click="handleCheckAnswers"
                 >
                     <md-icon>navigate_next</md-icon>
                 </md-button>
                 <md-button
                     v-else
-                    class="md-accent md-fab"
+                    class="md-accent md-fab Ui__FabBottomLeft"
                     @click="handleCalculatePoints"
                 >
                     <md-icon>calculate</md-icon>

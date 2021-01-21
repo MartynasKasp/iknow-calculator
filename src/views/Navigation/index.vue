@@ -1,8 +1,8 @@
 <template>
     <md-toolbar class="Navbar__Container md-primary" md-elevation="2">
-        <h2 class="md-title md-xsmall-hide">
+        <span class="md-xsmall-hide">
             iKNOW Points Calculator
-        </h2>
+        </span>
 
         <!-- <div class="Navbar__ItemsContainer">
             <ul>

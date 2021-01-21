@@ -1,6 +1,6 @@
 <template>
-    <div class="Home__FooterContainer">
-        <div class="Home__FooterContent md-layout md-gutter">
+    <div class="Home__FooterContainer md-layout">
+        <div class="Home__FooterContent md-layout-item md-layout md-gutter md-size-100">
             <div class="md-layout-item md-layout md-size-100">
                 <div class="md-layout-item md-layout md-small-size-100 md-size-50">
                     <div>

@@ -1,22 +1,11 @@
-.md-speed-dial {
-    position: absolute;
-    bottom: 78px;
-    left: 24px;
-
-    .md-fab {
-        bottom: -60px;
-        left: -8px;
-    }
-}
-
-.md-fab {
+.md-fab.Ui__FabBottomLeft {
     position: absolute;
     bottom: 16px;
     left: 16px;
 }
 
 @media (max-width: $small) {
-    .md-fab {
+    .md-fab.Ui__FabBottomLeft {
         bottom: 8px;
         left: 8px;
     }
