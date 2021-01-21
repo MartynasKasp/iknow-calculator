@@ -37,10 +37,22 @@
                         </span>
                         <ul class="body2">
                             <li>
-                                <a href="http://iknowgame.net/">Tactic iKNOW</a>
+                                <a
+                                    target="_blank"
+                                    rel="noopener"
+                                    href="http://iknowgame.net/"
+                                >
+                                    Tactic iKNOW
+                                </a>
                             </li>
                             <li>
-                                <a href="http://www.tactic.net/iknow/eng/miten_pelaan.php">iKNOW instructions</a>
+                                <a
+                                    target="_blank"
+                                    rel="noopener"
+                                    href="http://www.tactic.net/iknow/eng/miten_pelaan.php"
+                                >
+                                    iKNOW instructions
+                                </a>
                             </li>
                         </ul>
                     </div>

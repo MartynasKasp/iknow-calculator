@@ -46,6 +46,17 @@
             text-align: center;
         }
 
+        a {
+            color: $textColorDark;
+            border-bottom: 1px dotted $textColorDark;
+
+            &:hover {
+                color: $colorPrimary;
+                border-bottom: none;
+                text-decoration: none;
+            }
+        }
+
         .md-divider {
             margin: 24px 0;
             background-color: $colorDark;
