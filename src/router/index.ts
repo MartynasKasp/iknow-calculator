@@ -1,27 +1,46 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '@/views/Home/index.vue';
+import Game from '@/views/Game/index.vue';
+import PlayersSetup from '@/views/Players/Setup/index.vue';
+import GameBoard from '@/views/Board/index.vue';
+import GameEnd from '@/views/Game/End/index.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
+    {
+        path: '/',
+        name: 'homepage',
+        component: Home,
+    },
+    {
+        path: '/game',
+        name: 'game',
+        component: Game,
+        children: [
+            {
+                path: 'players',
+                name: 'playersSetup',
+                component: PlayersSetup,
+            },
+            {
+                path: 'board',
+                name: 'gameBoard',
+                component: GameBoard,
+            },
+            {
+                path: 'end',
+                name: 'gameEnd',
+                component: GameEnd,
+            },
+        ],
+    },
 ];
 
 const router = new VueRouter({
-  routes,
+    routes,
+    mode: 'history',
 });
 
 export default router;

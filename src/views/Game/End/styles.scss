@@ -1,0 +1,29 @@
+.GameEnd__Container {
+    padding-top: 48px;
+
+    > div > h4 > .smaller {
+        font-size: smaller;
+    }
+
+    .GameEnd__PlayersList {
+        color: $colorLight;
+        margin: 0 auto;
+
+        .GameEnd__PlayerItem {
+            display: flex;
+            padding: 8px 0;
+            justify-content: center;
+
+            .GameEnd__PlayerColor {
+                height: 20px;
+                width: 20px;
+                border: 1px solid $colorWhite;
+                margin-right: 8px;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

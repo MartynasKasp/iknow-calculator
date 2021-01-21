@@ -1,0 +1,41 @@
+.Navbar__Container {
+    position: fixed;
+    width: 100%;
+
+    span {
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: .005em;
+        line-height: 26px;
+        color: $colorDarker;
+        margin: 0;
+    }
+
+    // .Navbar__ItemsContainer {
+    //     height: 64px;
+
+    //     ul {
+    //         margin: 0;
+    //         display: inline-flex;
+    //         list-style-type: none;
+    //         height: 100%;
+        
+    //         li.Navbar__Item {
+    //             padding: 24px 16px 0;
+
+    //             > a {
+    //                 text-decoration: none;
+    //                 color: black;
+    //             }
+    
+    //             &:hover {
+    //                 border-bottom: 4px solid white;
+                    
+    //                 > a {
+    //                     color: white;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+}
