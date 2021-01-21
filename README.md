@@ -10,7 +10,7 @@ So what are you waiting for? Pick a friend who will administrate the calculator,
 
 *If you are not familiar with the iKNOW board game instructions you should read the original instructions [here](http://www.tactic.net/iknow/eng/miten_pelaan.php).*
 
-### How to use it?
+## How to use it?
 1. **Players setup**. 
 While your friends prepares the board and questions, add all your friends to the list by typing in their names and assigning them their picked figurines colors. To continue just press the red action button on the bottom left corner.
 
