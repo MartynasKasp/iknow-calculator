@@ -38,15 +38,16 @@ const routes: Array<RouteConfig> = [
         ],
     },
     {
-        path: '/not-found',
+        path: '*',
         name: 'pageNotFound',
         component: NotFound,
     },
 ];
 
 const router = new VueRouter({
-    routes,
     mode: 'history',
+    base: process.env.BASE_URL,
+    routes,
 });
 
 export default router;
