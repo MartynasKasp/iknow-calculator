@@ -29,15 +29,16 @@
                     </p>
                     <p>
                         So what are you waiting for? Pick a friend who will administrate the
-                        calculator, set it up and <a href="/game/players">start</a> the game.
+                        calculator, set it up and <a :href="gameStartUrl">start the game</a>.
                     </p>
                     <p>
-                        If you are not familiar with the iKNOW board game instructions
-                        you should read the original instructions
+                        If you are not familiar with the iKNOW board game you should
+                        read the original
                         <a
                             target="_blank"
+                            rel="noopener"
                             href="http://www.tactic.net/iknow/eng/miten_pelaan.php"
-                        >here</a>.
+                        >instructions</a> first.
                     </p>
                 </div>
             </div>
@@ -112,11 +113,13 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-
-@Component
-export default class Content extends Vue {
-
-}
+<script>
+export default {
+    name: 'Content',
+    computed: {
+        gameStartUrl() {
+            return this.$router.resolve({ name: 'playersSetup' }).href;
+        },
+    },
+};
 </script>
