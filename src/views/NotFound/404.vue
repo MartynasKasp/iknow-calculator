@@ -19,11 +19,6 @@ export default {
     metaInfo: {
         title: '404 Not Found',
     },
-    created() {
-        if (this.$router.name !== 'notFound404') {
-            this.$router.push({ name: 'notFound404' });
-        }
-    },
     methods: {
         handleGoHome() {
             this.$router.push({ name: 'homepage' });

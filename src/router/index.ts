@@ -42,11 +42,6 @@ const routes: Array<RouteConfig> = [
         name: 'notFound404',
         component: NotFound,
     },
-    {
-        path: '*',
-        name: 'notFound',
-        component: NotFound,
-    },
 ];
 
 const router = new VueRouter({
