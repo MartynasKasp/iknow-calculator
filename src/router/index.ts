@@ -5,7 +5,7 @@ import Game from '@/views/Game/index.vue';
 import PlayersSetup from '@/views/Players/Setup/index.vue';
 import GameBoard from '@/views/Board/index.vue';
 import GameEnd from '@/views/Game/End/index.vue';
-import NotFound from '@/views/NotFound/404.vue';
+import NotFound from '@/views/NotFound/index.vue';
 
 Vue.use(VueRouter);
 
@@ -39,7 +39,7 @@ const routes: Array<RouteConfig> = [
     },
     {
         path: '/not-found',
-        name: 'notFound404',
+        name: 'pageNotFound',
         component: NotFound,
     },
 ];
