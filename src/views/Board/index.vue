@@ -68,6 +68,9 @@ import GameBoard from './board.vue';
 import ResultsDialog from './resultsDialog.vue';
 
 @Component({
+    metaInfo: {
+        title: 'Game in progress',
+    },
     components: {
         GameBoard,
         ResultsDialog,

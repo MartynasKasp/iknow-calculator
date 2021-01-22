@@ -48,7 +48,11 @@ import boardModule from '@/modules/Board';
 import { PlayerType } from '@/store/types';
 import party from 'party-js';
 
-@Component
+@Component({
+    metaInfo: {
+        title: 'Game finished',
+    },
+})
 export default class GameEnd extends Vue {
     @Get(playerModule) private players!: PlayerType[];
 

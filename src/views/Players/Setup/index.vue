@@ -35,6 +35,9 @@ import PlayersSetupList from './list.vue';
 import PlayersSetupDialog from './dialog.vue';
 
 @Component({
+    metaInfo: {
+        title: 'Players setup',
+    },
     components: {
         PlayersSetupForm,
         PlayersSetupList,

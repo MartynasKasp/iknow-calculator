@@ -9,9 +9,9 @@
                                 iKnow Calculator
                             </h2>
                             <hr/>
-                            <h5>
+                            <span class="h5">
                                 iKNOW board game playing made easier and faster!
-                            </h5>
+                            </span>
                         </div>
                     </div>
                 </div>
