@@ -71,6 +71,8 @@ export default class App extends Vue {
     }
 
     .App__GameLayout {
+        background:
+            radial-gradient(ellipse at center, $colorDark 0%, $colorDarker 100%);
         padding-bottom: 72px;
         flex-grow: 1;
         flex-direction: column;

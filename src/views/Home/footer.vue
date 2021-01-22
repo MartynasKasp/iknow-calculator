@@ -61,7 +61,14 @@
         </div>
         <div class="Home__FooterCopyright md-layout-item md-layout md-size-100">
             <div class="md-layout-item md-size-100">
-                &#169; 2021 Copyright: <a href="https://martynaskasp.lt">MartynasK</a>
+                &#169; 2021 Copyright:
+                <a
+                    href="https://martynaskasp.lt"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    MartynasK
+                </a>
             </div>
         </div>
     </div>
