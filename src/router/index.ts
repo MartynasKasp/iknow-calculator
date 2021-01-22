@@ -5,6 +5,7 @@ import Game from '@/views/Game/index.vue';
 import PlayersSetup from '@/views/Players/Setup/index.vue';
 import GameBoard from '@/views/Board/index.vue';
 import GameEnd from '@/views/Game/End/index.vue';
+import NotFound from '@/views/NotFound/404.vue';
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,16 @@ const routes: Array<RouteConfig> = [
                 component: GameEnd,
             },
         ],
+    },
+    {
+        path: '/404',
+        name: 'notFound404',
+        component: NotFound,
+    },
+    {
+        path: '*',
+        name: 'notFound',
+        component: NotFound,
     },
 ];
 
