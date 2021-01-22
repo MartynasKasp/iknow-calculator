@@ -29,7 +29,7 @@
                     </p>
                     <p>
                         So what are you waiting for? Pick a friend who will administrate the
-                        calculator, set it up and <a href="/game/players">start the game</a>.
+                        calculator, set it up and <a :href="gameStartUrl">start the game</a>.
                     </p>
                     <p>
                         If you are not familiar with the iKNOW board game you should
@@ -113,11 +113,13 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-
-@Component
-export default class Content extends Vue {
-
-}
+<script>
+export default {
+    name: 'Content',
+    computed: {
+        gameStartUrl() {
+            return this.$router.resolve({ name: 'playersSetup' }).href;
+        },
+    },
+};
 </script>

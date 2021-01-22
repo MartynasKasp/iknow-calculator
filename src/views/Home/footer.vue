@@ -67,13 +67,13 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-
-@Component
-export default class Footer extends Vue {
-    get gameStartUrl() {
-        return this.$router.resolve({ name: 'playersSetup' }).href;
-    }
-}
+<script>
+export default {
+    name: 'Footer',
+    computed: {
+        gameStartUrl() {
+            return this.$router.resolve({ name: 'playersSetup' }).href;
+        },
+    },
+};
 </script>
