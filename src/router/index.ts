@@ -38,7 +38,7 @@ const routes: Array<RouteConfig> = [
         ],
     },
     {
-        path: '/404',
+        path: '/not-found',
         name: 'notFound404',
         component: NotFound,
     },

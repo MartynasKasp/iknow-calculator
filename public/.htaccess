@@ -1,10 +1,10 @@
-# Redirect all trafic to HTTPS
+# Redirect all traffic tp HTTPS
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$ https://iknowcalculator.online/$1 [R,L]
 
 # Cache Control headers
-Header set Cache-Control "no-store, no-cache, must-revalidate, private, max-age="31556926"
+Header set Cache-Control "no-store, no-cache, must-revalidate, private, max-age=31556926"
 
-# HTTP status redirects
-ErrorDocument 404 /404
+# HTTPS status redirects
+# ErrorDocument 404 /not-found
