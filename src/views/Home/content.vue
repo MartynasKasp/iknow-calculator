@@ -32,13 +32,13 @@
                         calculator, set it up and <a href="/game/players">start the game</a>.
                     </p>
                     <p>
-                        If you are not familiar with the iKNOW board game instructions
-                        you should read the original
+                        If you are not familiar with the iKNOW board game you should
+                        read the original
                         <a
                             target="_blank"
                             rel="noopener"
                             href="http://www.tactic.net/iknow/eng/miten_pelaan.php"
-                        >instructions</a>.
+                        >instructions</a> first.
                     </p>
                 </div>
             </div>
