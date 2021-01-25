@@ -8,15 +8,43 @@
                 md-small-size-70
                 md-size-30"
             >
-                <md-card v-if="figuresSetup">
-                    <md-card-content>
-                        <strong>{{ picksCategory }}</strong> picks the category.<br/>
-                        <strong>{{ readerName }}</strong> reads the card this round.
-                    </md-card-content>
-                </md-card>
+                <div v-if="figuresSetup">
+                    <md-card>
+                        <md-card-content>
+                            <PlayerInfo
+                                :player="cardReader"
+                                followingText="picks the category."
+                            />
+                            <PlayerInfo
+                                :player="picksCategory"
+                                followingText="reads the card this round."
+                            />
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card v-if="knowFigures.length">
+                        <md-card-content>
+                            <PlayerInfo
+                                :player="placingKnowFigure"
+                                leadingText="Place"
+                                followingText="iKNOW figure."
+                            />
+                        </md-card-content>
+                    </md-card>
+
+                    <md-card v-else-if="betFigures.length">
+                        <md-card-content>
+                            <PlayerInfo
+                                :player="placingBetFigure"
+                                leadingText="Place"
+                                followingText="iBET figure."
+                            />
+                        </md-card-content>
+                    </md-card>
+                </div>
                 <md-card v-else>
                     <md-card-content>
-                        Check <strong>iKnow</strong> figures of those, who answered correctly.
+                        Check <strong>iKNOW</strong> figures of those, who answered correctly.
                     </md-card-content>
                 </md-card>
             </div>
@@ -24,20 +52,61 @@
             <GameBoard :gameBoardBox="gameBoardBox" />
 
             <div class="md-layout-item">
-                <md-button
+                <md-speed-dial
                     v-if="figuresSetup"
-                    class="md-accent md-fab Ui__FabBottomLeft"
-                    @click="handleCheckAnswers"
+                    class="md-bottom-left"
+                    md-direction="top"
                 >
-                    <md-icon>navigate_next</md-icon>
-                </md-button>
-                <md-button
+                    <md-speed-dial-target>
+                        <md-icon>menu</md-icon>
+                    </md-speed-dial-target>
+
+                    <md-speed-dial-content>
+                        <md-button @click="handleCheckAnswers" class="md-icon-button">
+                            <md-icon>navigate_next</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+
+                    <md-speed-dial-content>
+                        <md-button class="md-icon-button">
+                            <md-icon>settings</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+
+                    <md-speed-dial-content>
+                        <md-button @click="showGameEndDialog = true" class="md-icon-button">
+                            <md-icon>home</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+                </md-speed-dial>
+
+                <md-speed-dial
                     v-else
-                    class="md-accent md-fab Ui__FabBottomLeft"
-                    @click="handleCalculatePoints"
+                    class="md-bottom-left"
+                    md-direction="top"
                 >
-                    <md-icon>calculate</md-icon>
-                </md-button>
+                    <md-speed-dial-target>
+                        <md-icon>menu</md-icon>
+                    </md-speed-dial-target>
+
+                    <md-speed-dial-content>
+                        <md-button @click="handleCalculatePoints" class="md-icon-button">
+                            <md-icon>calculate</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+
+                    <md-speed-dial-content>
+                        <md-button @click="handleGoBack" class="md-icon-button">
+                            <md-icon>undo</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+
+                    <md-speed-dial-content>
+                        <md-button @click="showGameEndDialog = true" class="md-icon-button">
+                            <md-icon>home</md-icon>
+                        </md-button>
+                    </md-speed-dial-content>
+                </md-speed-dial>
             </div>
 
             <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showBetSnackbar">
@@ -53,6 +122,7 @@
             </md-snackbar>
 
             <ResultsDialog />
+            <GameEndDialog />
         </div>
     </div>
 </template>
@@ -64,8 +134,10 @@ import gameModule, { GameStatusType } from '@/modules/Game';
 import playerModule from '@/modules/Player';
 import boardModule, { BoardStatusType } from '@/modules/Board';
 import { BoardBoxType, PlayerType } from '@/store/types';
+import PlayerInfo from '@/projectComponents/player/player.vue';
 import GameBoard from './board.vue';
 import ResultsDialog from './resultsDialog.vue';
+import GameEndDialog from './gameEndDialog.vue';
 
 @Component({
     metaInfo: {
@@ -74,6 +146,8 @@ import ResultsDialog from './resultsDialog.vue';
     components: {
         GameBoard,
         ResultsDialog,
+        PlayerInfo,
+        GameEndDialog,
     },
 })
 export default class Board extends Vue {
@@ -97,22 +171,32 @@ export default class Board extends Vue {
 
     @Get(playerModule) private betFigures!: PlayerType[];
 
+    @Sync(boardModule) private showGameEndDialog!: boolean;
+
     beforeMount() {
         if (this.gameStatus !== GameStatusType.gameStarted) {
             this.$router.push({ name: 'game' });
         }
     }
 
-    get readerName(): string {
-        return this.players[this.readerIndex].name;
+    get cardReader(): PlayerType {
+        return this.players[this.readerIndex];
     }
 
-    get picksCategory(): string {
-        return this.players[this.categoryPicker].name;
+    get picksCategory(): PlayerType {
+        return this.players[this.categoryPicker];
     }
 
     get figuresSetup() {
         return this.boardStatus === BoardStatusType.figuresSetup;
+    }
+
+    get placingKnowFigure() {
+        return this.knowFigures[0];
+    }
+
+    get placingBetFigure() {
+        return this.betFigures[0];
     }
 
     handleCheckAnswers() {
@@ -131,6 +215,10 @@ export default class Board extends Vue {
         } else {
             boardModule.toggleResultsDialog();
         }
+    }
+
+    handleGoBack() {
+        boardModule.setBoardStatus(BoardStatusType.figuresSetup);
     }
 }
 </script>
