@@ -11,7 +11,7 @@
                     v-model="playerColor"
                     name="playerColor"
                     id="playerColor"
-                    :disabled="!availableColors.length"
+                    :disabled="availableColors.length === 0"
                 >
                     <md-option
                         v-for="color in availableColors"
@@ -30,7 +30,11 @@
         <div class="md-layout-item md-small-size-100 md-size-20">
             <md-field :class="hasErrorMessage('name')">
                 <label>Player name</label>
-                <md-input v-model="playerName"></md-input>
+                <md-input
+                    v-model="playerName"
+                    :disabled="disableForm"
+                >
+                </md-input>
                 <span v-if="formErrors['name']" class="md-error">
                     {{ formErrors['name'] }}
                 </span>
@@ -41,7 +45,7 @@
             <md-button
                 @click="handlePlayerAdd"
                 class="md-raised md-primary"
-                :disabled="disableAddButton"
+                :disabled="disableForm"
             >
                 Add player
             </md-button>
@@ -67,7 +71,7 @@ export default class PlayersSetupForm extends Vue {
 
     @Get(playerModule) private formErrors!: FormErrorType[];
 
-    @Get(playerModule) private disableAddButton!: boolean;
+    @Get(playerModule) private disableForm!: boolean;
 
     @Get(gameModule) private figureColors!: SelectType[];
 
