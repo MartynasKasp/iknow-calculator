@@ -1,3 +1,4 @@
+import { PlayerType } from '@/store/types';
 import { PlayerFormDataType } from './types';
 
 const defaultFormData: () => PlayerFormDataType = () => ({
@@ -5,4 +6,11 @@ const defaultFormData: () => PlayerFormDataType = () => ({
     color: '',
 });
 
-export { defaultFormData };
+const defaultPlayerData: () => PlayerType = () => ({
+    name: '',
+    color: '',
+    points: 0,
+    roundResult: 0,
+});
+
+export { defaultFormData, defaultPlayerData };

@@ -27,6 +27,10 @@ export class Board extends VuexModule {
 
     private showFiguresSnackbar: boolean = false;
 
+    private showGameEndDialog: boolean = false;
+
+    private showSettingsDialog: boolean = false;
+
     @Mutation
     public setBoardStatus(status: BoardStatusType) {
         this.boardStatus = status;
@@ -50,6 +54,11 @@ export class Board extends VuexModule {
     @Mutation
     public toggleFiguresSnackbar() {
         this.showFiguresSnackbar = !this.showFiguresSnackbar;
+    }
+
+    @Mutation
+    public setGameEndDialog(status: boolean) {
+        this.showGameEndDialog = status;
     }
 
     @Action

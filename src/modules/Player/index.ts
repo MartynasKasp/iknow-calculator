@@ -6,7 +6,7 @@ import store from '@/store';
 import { BoardBoxType, PlayerType } from '@/store/types';
 import { MAX_PLAYERS } from '@/modules/Game';
 import { FormErrorType } from '@/utils/errors/types';
-import { defaultFormData } from './defaults';
+import { defaultFormData, defaultPlayerData } from './defaults';
 import { PlayerFormDataType } from './types';
 import { POINTS_BET, POINTS_READING, POINTS_WINNER } from '../Game/defaults';
 
@@ -21,7 +21,7 @@ export class Player extends VuexModule {
 
     private showMinSnackbar: boolean = false;
 
-    private disableAddButton: boolean = false;
+    private disableForm: boolean = false;
 
     private showSetupCompleteDialog: boolean = false;
 
@@ -36,6 +36,12 @@ export class Player extends VuexModule {
     private knowFigures: PlayerType[] = [];
 
     private betFigures: PlayerType[] = [];
+
+    private settingsForm: PlayerType = defaultPlayerData();
+
+    private settingsEditingPlayer: number = -1;
+
+    private showPlayerEditDialog: boolean = false;
 
     @Mutation
     private addPlayer(data: PlayerType) {
@@ -53,6 +59,12 @@ export class Player extends VuexModule {
     }
 
     @Mutation
+    private setPlayerData(payload: { index: number; data: PlayerType }) {
+        const { index, data } = payload;
+        this.players.splice(index, 1, data);
+    }
+
+    @Mutation
     private toggleMaxSnackbar() {
         this.showMaxSnackbar = !this.showMaxSnackbar;
     }
@@ -63,8 +75,8 @@ export class Player extends VuexModule {
     }
 
     @Mutation
-    private setAddButtonDisabled(value: boolean) {
-        this.disableAddButton = value;
+    private setFormDisabled(status: boolean) {
+        this.disableForm = status;
     }
 
     @Mutation
@@ -122,6 +134,21 @@ export class Player extends VuexModule {
         this.categoryPicker = index;
     }
 
+    @Mutation
+    private setEditingPlayer(index: number) {
+        this.settingsEditingPlayer = index;
+    }
+
+    @Mutation
+    private setSettingsFormData(data: PlayerType) {
+        this.settingsForm = { ...data };
+    }
+
+    @Mutation
+    private togglePlayerEditDialog() {
+        this.showPlayerEditDialog = !this.showPlayerEditDialog;
+    }
+
     @Action
     public async restartGame() {
         const winner = this.players.find((player) => player.points >= POINTS_WINNER);
@@ -163,7 +190,7 @@ export class Player extends VuexModule {
                 throw e;
             }
         } else {
-            this.setAddButtonDisabled(true);
+            this.setFormDisabled(true);
             this.toggleMaxSnackbar();
             throw new Error('Maximum players count is 6 persons.');
         }
@@ -172,7 +199,7 @@ export class Player extends VuexModule {
     @Action
     public removePlayerFromGame(index: number) {
         this.removePlayer(index);
-        this.setAddButtonDisabled(false);
+        this.setFormDisabled(false);
     }
 
     @Action({ rawError: true })
@@ -308,6 +335,24 @@ export class Player extends VuexModule {
     public clearGame() {
         this.setPlayersData();
         this.setSetupCompleteDialog(false);
+    }
+
+    @Action
+    public editPlayer(index: number) {
+        this.setEditingPlayer(index);
+        this.setSettingsFormData(this.players[index]);
+        this.togglePlayerEditDialog();
+    }
+
+    @Action
+    public updatePlayer() {
+        this.setPlayerData({
+            index: this.settingsEditingPlayer,
+            data: {
+                ...this.settingsForm,
+                points: Number(this.settingsForm.points),
+            },
+        });
     }
 }
 

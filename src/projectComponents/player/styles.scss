@@ -1,0 +1,18 @@
+.Player__Container {
+    display: inline-flex;
+
+    .Player__LeadignText {
+        margin-right: 4px;
+    }
+
+    .Player__Color {
+        width: 16px;
+        height: 16px;
+        border: 1px solid $colorWhite;
+        margin: 2px 4px 0 0;
+    }
+
+    .Player__Name {
+        margin-right: 4px;
+    }
+}
