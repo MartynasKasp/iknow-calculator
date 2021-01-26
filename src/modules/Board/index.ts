@@ -29,6 +29,8 @@ export class Board extends VuexModule {
 
     private showGameEndDialog: boolean = false;
 
+    private showSettingsDialog: boolean = false;
+
     @Mutation
     public setBoardStatus(status: BoardStatusType) {
         this.boardStatus = status;
