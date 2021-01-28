@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import localStoragePlugin from '@/plugins/localStorage';
+import Store from './store';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default new Store({
     state: {
     },
     mutations: {
@@ -12,4 +14,5 @@ export default new Vuex.Store({
     },
     modules: {
     },
+    plugins: [localStoragePlugin],
 });

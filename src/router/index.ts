@@ -6,6 +6,7 @@ import PlayersSetup from '@/views/Players/Setup/index.vue';
 import GameBoard from '@/views/Board/index.vue';
 import GameEnd from '@/views/Game/End/index.vue';
 import NotFound from '@/views/NotFound/index.vue';
+import gameModule from '@/modules/Game';
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,16 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes,
+});
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+router.beforeEach((to, from, next) => {
+    if (to.name === 'gameBoard' && !from.name) {
+        gameModule.setResumingGame(true);
+        next();
+    } else {
+        next();
+    }
 });
 
 export default router;
