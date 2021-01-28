@@ -6,7 +6,7 @@
 
         <div class="md-layout-item md-small-size-100 md-size-20">
             <md-field :class="hasErrorMessage('color')">
-                <label for="playerColor">Player color</label>
+                <label for="playerColor">Figurines color</label>
                 <md-select
                     v-model="playerColor"
                     name="playerColor"

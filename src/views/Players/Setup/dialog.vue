@@ -27,9 +27,9 @@ export default class PlayersSetupDialog extends Vue {
     @Sync(playerModule, 'showSetupCompleteDialog') private active!: boolean;
 
     onConfirm() {
-        playerModule.completePlayerSetup();
         gameModule.setGameStatus(GameStatusType.gameStarted);
         boardModule.setBoardStatus(BoardStatusType.figuresSetup);
+        playerModule.completePlayerSetup();
         this.$router.push({ name: 'gameBoard' });
     }
 }

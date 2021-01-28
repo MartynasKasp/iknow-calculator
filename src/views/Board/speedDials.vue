@@ -99,7 +99,7 @@ export default class BoardSpeedDials extends Vue {
     }
 
     handleGoBack() {
-        boardModule.setBoardStatus(BoardStatusType.figuresSetup);
+        boardModule.backToFiguresSetup();
     }
 }
 </script>
