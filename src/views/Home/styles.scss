@@ -91,11 +91,12 @@
     .Home__FooterContainer {
         background-color: $backgroundColor;
 
-        a {
+        a, span {
             border-bottom: none;
 
             &:hover {
                 border-bottom: 1px dotted $colorLight;
+                cursor: pointer;
             }
         }
 

@@ -27,6 +27,9 @@
                             <li>
                                 <a :href="gameStartUrl">Start game</a>
                             </li>
+                            <li>
+                                <span @click="handleBugReport">Found a bug?</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -75,11 +78,18 @@
 </template>
 
 <script>
+import gameModule from '@/modules/Game';
+
 export default {
     name: 'Footer',
     computed: {
         gameStartUrl() {
             return this.$router.resolve({ name: 'playersSetup' }).href;
+        },
+    },
+    methods: {
+        handleBugReport() {
+            gameModule.setBugReportDialog(true);
         },
     },
 };

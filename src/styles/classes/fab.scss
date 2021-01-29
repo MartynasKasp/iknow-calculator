@@ -1,12 +1,30 @@
-.md-fab.Ui__FabBottomLeft {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
+.md-fab {
+    &.Ui__FabBottom {
+        position: absolute;
+        bottom: 16px;
+
+        &--left {
+            left: 16px;
+        }
+
+        &--right {
+            right: 16px;
+        }
+    }
 }
 
 @media (max-width: $small) {
-    .md-fab.Ui__FabBottomLeft {
-        bottom: 8px;
-        left: 8px;
+    .md-fab {
+        &.Ui__FabBottom {
+            bottom: 8px;
+    
+            &--left {
+                left: 8px;
+            }
+
+            &--right {
+                right: 16px;
+            }
+        }
     }
 }
