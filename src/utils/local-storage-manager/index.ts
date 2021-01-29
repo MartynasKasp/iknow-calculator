@@ -9,6 +9,7 @@ export default class LocalStorageManager {
             'setGameStatus',
             'setBoardStatus',
             'setPlayersData',
+            'setResumingGame',
         ];
     }
 

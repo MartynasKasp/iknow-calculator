@@ -15,12 +15,32 @@
             <PlayersSetupDialog :count="players.length" />
         </div>
 
-        <md-button
-            @click="handleGameStart"
-            class="md-fab Ui__FabBottomLeft"
+        <md-speed-dial
+            class="md-bottom-left"
+            md-direction="top"
         >
-            <md-icon>navigate_next</md-icon>
-        </md-button>
+            <md-speed-dial-target>
+                <md-icon>menu</md-icon>
+            </md-speed-dial-target>
+
+            <md-speed-dial-content>
+                <md-button @click="handleGameStart" class="md-icon-button">
+                    <md-icon>navigate_next</md-icon>
+                </md-button>
+            </md-speed-dial-content>
+
+            <md-speed-dial-content>
+                <md-button @click="handleBugReport" class="md-icon-button">
+                    <md-icon>bug_report</md-icon>
+                </md-button>
+            </md-speed-dial-content>
+
+            <md-speed-dial-content>
+                <md-button @click="handleGoHome" class="md-icon-button">
+                    <md-icon>home</md-icon>
+                </md-button>
+            </md-speed-dial-content>
+        </md-speed-dial>
     </div>
 </template>
 
@@ -65,6 +85,14 @@ export default class PlayersSetup extends Vue {
         } else {
             playerModule.toggleSetupCompleteDialog();
         }
+    }
+
+    handleBugReport() {
+        gameModule.setBugReportDialog(true);
+    }
+
+    handleGoHome() {
+        this.$router.push({ name: 'homepage' });
     }
 }
 </script>
