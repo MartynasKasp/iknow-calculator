@@ -8,7 +8,7 @@
         <md-dialog-content>
             If you found a bug, please report it by sending an email to
             <a :href="emailUrl">bugs@iknowcalculator.online</a>.<br/>
-            Please make the description of a bug is as detailed as possible.<br/><br/>
+            Please make the description of a bug as detailed as possible.<br/><br/>
 
             Thank you for your contribution!
         </md-dialog-content>
