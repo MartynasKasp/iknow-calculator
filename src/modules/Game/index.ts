@@ -47,9 +47,23 @@ export class Game extends VuexModule {
         },
     ];
 
+    private resumingGame: boolean = false;
+
+    private showBugReportDialog: boolean = false;
+
     @Mutation
     public setGameStatus(status: GameStatusType) {
         this.gameStatus = status;
+    }
+
+    @Mutation
+    public setResumingGame(val: boolean) {
+        this.resumingGame = val;
+    }
+
+    @Mutation
+    public setBugReportDialog(val: boolean) {
+        this.showBugReportDialog = val;
     }
 }
 

@@ -3,16 +3,20 @@
         <Navigation v-if="displayNavbar" />
 
         <router-view :class="elementClass" />
+
+        <BugReport />
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import Navigation from '@/views/Navigation/index.vue';
+import BugReport from '@/views/BugReport/index.vue';
 
 @Component({
     components: {
         Navigation,
+        BugReport,
     },
 })
 export default class App extends Vue {

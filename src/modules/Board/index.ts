@@ -8,8 +8,7 @@ import { defaultGameBoardBox } from './defaults';
 
 export enum BoardStatusType {
     figuresSetup,
-    answersCheck,
-    pointsCalculation
+    answersCheck
 }
 
 @Module({
@@ -52,6 +51,16 @@ export class Board extends VuexModule {
     }
 
     @Mutation
+    private clearBoardAnswers() {
+        const resetBox = this.gameBoardBox.map((item) => ({
+            ...item,
+            knowAnswer: false,
+        }));
+
+        this.gameBoardBox = [...resetBox];
+    }
+
+    @Mutation
     public toggleFiguresSnackbar() {
         this.showFiguresSnackbar = !this.showFiguresSnackbar;
     }
@@ -63,15 +72,21 @@ export class Board extends VuexModule {
 
     @Action
     public startNextRound() {
-        this.setBoardStatus(BoardStatusType.figuresSetup);
         this.resetGameBoard();
         this.toggleResultsDialog();
+        this.setBoardStatus(BoardStatusType.figuresSetup);
     }
 
     @Action
     public async restartGame() {
-        this.setBoardStatus(BoardStatusType.figuresSetup);
         this.resetGameBoard();
+        this.setBoardStatus(BoardStatusType.figuresSetup);
+    }
+
+    @Action
+    public backToFiguresSetup() {
+        this.clearBoardAnswers();
+        this.setBoardStatus(BoardStatusType.figuresSetup);
     }
 }
 

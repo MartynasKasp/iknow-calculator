@@ -1,0 +1,11 @@
+.BugReport__Container {
+    a {
+        color: $colorWhite;
+        border-bottom: 1px dotted $colorWhite;
+
+        &:hover {
+            border-bottom: none;
+            text-decoration: none;
+        }
+    }
+}

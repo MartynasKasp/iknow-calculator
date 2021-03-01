@@ -14,16 +14,24 @@ export default class Game extends Vue {
     beforeMount() {
         switch (this.gameStatus) {
         case GameStatusType.playersSetup:
-            this.$router.push({ name: 'playersSetup' });
+            if (this.$route.name !== 'playersSetup') {
+                this.$router.push({ name: 'playersSetup' });
+            }
             break;
         case GameStatusType.gameStarted:
-            this.$router.push({ name: 'gameBoard' });
+            if (this.$route.name !== 'gameBoard') {
+                this.$router.push({ name: 'gameBoard' });
+            }
             break;
         case GameStatusType.gameEnd:
-            this.$router.push({ name: 'gameEnd' });
+            if (this.$route.name !== 'gameEnd') {
+                this.$router.push({ name: 'gameEnd' });
+            }
             break;
         default:
-            this.$router.push({ name: 'homepage' });
+            if (this.$route.name !== 'homepage') {
+                this.$router.push({ name: 'homepage' });
+            }
             break;
         }
     }

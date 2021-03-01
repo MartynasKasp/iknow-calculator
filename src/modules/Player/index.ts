@@ -55,7 +55,7 @@ export class Player extends VuexModule {
 
     @Mutation
     private setPlayersData(data: PlayerType[] = []) {
-        this.players = [...data];
+        this.players = data.length ? [...data] : [];
     }
 
     @Mutation
@@ -161,8 +161,8 @@ export class Player extends VuexModule {
                 .map((player) => ({ ...player, points: 1, roundResult: 0 })),
         );
         this.setReaderIndex(winnerIndex);
-        this.setFigures();
         this.setCategoryPicker(winnerIndex);
+        this.setFigures();
     }
 
     @Action
@@ -207,9 +207,13 @@ export class Player extends VuexModule {
         this.clearFormErrors();
 
         const { name, color } = this.formData;
+
         if (name === '') {
             this.addFormError({ key: 'name', value: 'Enter player name' });
+        } else if (name.length < 3 || name.length > 20) {
+            this.addFormError({ key: 'name', value: 'Between 3 and 20 characters' });
         }
+
         if (color === '') {
             this.addFormError({ key: 'color', value: 'Select player color' });
         }
@@ -222,8 +226,8 @@ export class Player extends VuexModule {
     @Action
     public completePlayerSetup() {
         this.resetReaderIndex();
-        this.setFigures();
         this.setCategoryPicker(0);
+        this.setFigures();
     }
 
     @Action
@@ -239,10 +243,10 @@ export class Player extends VuexModule {
     public async startNextRound() {
         this.resetRoundResults();
         this.getNextReader();
-        this.setFigures();
         if (this.categoryPicker === -1) {
             this.setCategoryPicker(this.readerIndex);
         }
+        this.setFigures();
     }
 
     @Action
@@ -333,8 +337,8 @@ export class Player extends VuexModule {
 
     @Action
     public clearGame() {
-        this.setPlayersData();
         this.setSetupCompleteDialog(false);
+        this.setPlayersData();
     }
 
     @Action

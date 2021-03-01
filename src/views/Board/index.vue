@@ -15,12 +15,13 @@
                 :md-duration="4000"
                 :md-active.sync="showFiguresSnackbar"
             >
-                <span>Every bet and know figure must be placed.</span>
+                <span>Every iBET and iKNOW figure must be placed.</span>
             </md-snackbar>
 
             <ResultsDialog />
             <GameEndDialog />
             <SettingsDialog />
+            <ResumeDialog />
         </div>
     </div>
 </template>
@@ -37,6 +38,7 @@ import RoundSpeedDials from './speedDials.vue';
 import ResultsDialog from './dialogs/resultsDialog.vue';
 import GameEndDialog from './dialogs/gameEndDialog.vue';
 import SettingsDialog from './dialogs/settingsDialog.vue';
+import ResumeDialog from './dialogs/resumeDialog.vue';
 
 @Component({
     metaInfo: {
@@ -49,6 +51,7 @@ import SettingsDialog from './dialogs/settingsDialog.vue';
         ResultsDialog,
         GameEndDialog,
         SettingsDialog,
+        ResumeDialog,
     },
 })
 export default class Board extends Vue {

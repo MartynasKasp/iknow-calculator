@@ -3,25 +3,35 @@
         <Header />
         <Content />
         <Footer />
+
+        <md-button
+            @click="handleBugReport"
+            class="md-fab Ui__FabBottom Ui__FabBottom--right"
+        >
+            <md-icon>bug_report</md-icon>
+        </md-button>
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+<script>
+import gameModule from '@/modules/Game';
 import Header from './header.vue';
 import Content from './content.vue';
 import Footer from './footer.vue';
 
-@Component({
+export default {
+    name: 'Home',
     components: {
         Header,
         Content,
         Footer,
     },
-})
-export default class Home extends Vue {
-
-}
+    methods: {
+        handleBugReport() {
+            gameModule.setBugReportDialog(true);
+        },
+    },
+};
 </script>
 
 <style lang="scss">
