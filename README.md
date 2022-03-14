@@ -6,7 +6,7 @@ iKNOW is a board game with a touch more interaction. It wraps knowledge, skill a
 
 This online game points calculator was made to make your iKNOW board game playing experience much easier and faster! Forget about wasting minutes after every round to correctly calculate the points of each player. With this easy to use calculator you will be able to save playing time (which means you can play more matches), calculate each rounds outcome and track everyones score! When one of the players collects points needed to win the game, it will automatically end, announcing the winner and showing the final results.
 
-So what are you waiting for? Pick a friend who will administrate the calculator, set it up and [start the game](http://iknowcalculator.online/game/players).
+So what are you waiting for? Pick a friend who will administrate the calculator, set it up and [start the game](http://iknow.martynaskasp.lt/game/players).
 
 *If you are not familiar with the iKNOW board game you should read the original [instructions](http://www.tactic.net/iknow/eng/miten_pelaan.php) first.*
 
@@ -20,4 +20,4 @@ The game shows who picks the category and reads the question. While your friends
 3. **Answers check**. 
 After the card reader tells the correct answer, check the iKNOW figures of those who answered correctly. Click the action button and give or take the tokens from players based on the shown round results.
 
-[Visit the website](http://iknowcalculator.online/)
+[Visit the website](http://iknow.martynaskasp.lt/)
