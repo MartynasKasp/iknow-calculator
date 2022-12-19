@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app:rw,cached
+      - ~/.kube:/root/.kube
+    ports:
+      - 3000:3000

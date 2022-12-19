@@ -208,10 +208,8 @@ export class Player extends VuexModule {
 
         const { name, color } = this.formData;
 
-        if (name === '') {
+        if (name === '' || name.length < 1) {
             this.addFormError({ key: 'name', value: 'Enter player name' });
-        } else if (name.length < 3 || name.length > 20) {
-            this.addFormError({ key: 'name', value: 'Between 3 and 20 characters' });
         }
 
         if (color === '') {
