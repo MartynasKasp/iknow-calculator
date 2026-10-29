@@ -18,7 +18,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import gameModule, { GameStatusType } from '@/modules/Game';
 import playerModule from '@/modules/Player';
 import boardModule, { BoardStatusType } from '@/modules/Board';
-import { Sync } from '@/utils/vuex-module-mutators';
+import { Get, Sync } from '@/utils/vuex-module-mutators';
+import PlayerHistory from '@/utils/player-history';
+import { PlayerType } from '@/store/types';
 
 @Component
 export default class PlayersSetupDialog extends Vue {
@@ -26,7 +28,10 @@ export default class PlayersSetupDialog extends Vue {
 
     @Sync(playerModule, 'showSetupCompleteDialog') private active!: boolean;
 
+    @Get(playerModule) private players!: PlayerType[];
+
     onConfirm() {
+        PlayerHistory.rememberGame(this.players);
         gameModule.setGameStatus(GameStatusType.gameStarted);
         boardModule.setBoardStatus(BoardStatusType.figuresSetup);
         playerModule.completePlayerSetup();
