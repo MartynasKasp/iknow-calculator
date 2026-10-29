@@ -86,4 +86,14 @@ export default class PlayerHistory {
         games.splice(index, 1);
         write(RECENT_GAMES_KEY, games);
     }
+
+    // Clears saved players and recent line-ups from this device.
+    public static forgetAll() {
+        try {
+            localStorage.removeItem(SAVED_PLAYERS_KEY);
+            localStorage.removeItem(RECENT_GAMES_KEY);
+        } catch {
+            // Nothing to clear if storage is blocked.
+        }
+    }
 }

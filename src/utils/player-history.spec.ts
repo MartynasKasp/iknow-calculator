@@ -27,4 +27,11 @@ describe('player history', () => {
         localStorage.setItem('saved_players', JSON.stringify([{ name: 'Ona', color: 'e84a50' }]));
         expect(PlayerHistory.getSavedPlayers()).toEqual([{ name: 'Ona', color: 'f2334a' }]);
     });
+
+    it('forgets everything on request', () => {
+        PlayerHistory.rememberGame([{ name: 'Ona', color: 'a' }]);
+        PlayerHistory.forgetAll();
+        expect(PlayerHistory.getSavedPlayers()).toEqual([]);
+        expect(PlayerHistory.getRecentGames()).toEqual([]);
+    });
 });

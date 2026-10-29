@@ -187,6 +187,9 @@ const steps = [
                     iKNOW Calculator is an unofficial fan-made tool. It is not affiliated with, endorsed by
                     or sponsored by Tactic Games. iKNOW is a trademark of its respective owner.
                 </p>
+                <p class="mx-auto max-w-xl text-pretty">
+                    No tracking, no accounts, no cookies. Your players and games are stored only in this browser.
+                </p>
             </div>
         </footer>
     </div>

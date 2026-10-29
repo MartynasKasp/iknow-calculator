@@ -2,7 +2,9 @@
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useHead } from '@unhead/vue';
-import { History, Plus, Trash2, Users, X } from 'lucide-vue-next';
+import {
+    History, Lock, Plus, Trash2, Users, X,
+} from 'lucide-vue-next';
 import { usePlayerStore, type AddPlayerErrors } from '@/stores/player';
 import { GameStatus, useGameStore } from '@/stores/game';
 import { BoardStatus, useBoardStore } from '@/stores/board';
@@ -27,6 +29,7 @@ const name = ref('');
 const color = ref('');
 const errors = ref<AddPlayerErrors>({});
 const confirmStart = ref(false);
+const confirmForget = ref(false);
 
 const savedPlayers = ref<SavedPlayerType[]>(PlayerHistory.getSavedPlayers());
 const recentGames = ref<RecentGameType[]>(PlayerHistory.getRecentGames());
@@ -77,6 +80,16 @@ const useRecentGame = (recent: RecentGameType) => {
 const forgetRecentGame = (index: number) => {
     PlayerHistory.forgetRecentGame(index);
     recentGames.value = PlayerHistory.getRecentGames();
+};
+
+const hasHistory = computed(() => savedPlayers.value.length > 0 || recentGames.value.length > 0);
+
+const forgetEverything = () => {
+    PlayerHistory.forgetAll();
+    savedPlayers.value = [];
+    recentGames.value = [];
+    confirmForget.value = false;
+    showToast('Poof! Saved players are gone.', { description: 'Fresh start on this device.' });
 };
 
 const formatDate = (value: string) => {
@@ -209,6 +222,23 @@ const startGame = () => {
                     </li>
                 </TransitionGroup>
             </section>
+
+            <section class="flex items-start gap-3 rounded-xl bg-surface-secondary/60 px-4 py-3 text-sm text-muted">
+                <Lock class="mt-0.5 size-4 shrink-0" />
+                <div class="flex-1">
+                    <p>
+                        Players and recent games are saved on this device only.
+                        Nothing is sent anywhere.
+                    </p>
+                    <button
+                        v-if="hasHistory"
+                        class="link mt-1 font-medium text-foreground underline underline-offset-2"
+                        @click="confirmForget = true"
+                    >
+                        Forget saved players
+                    </button>
+                </div>
+            </section>
         </main>
 
         <ActionBar>
@@ -219,6 +249,17 @@ const startGame = () => {
             </span>
             <button class="button button--primary ms-auto" @click="askToStart">Let's play</button>
         </ActionBar>
+
+        <AppModal
+            v-model:open="confirmForget"
+            title="Forget saved players?"
+            description="This clears saved players and your recent line-ups from this device. Anyone at the table right now stays put."
+        >
+            <template #footer>
+                <button class="button button--tertiary" @click="confirmForget = false">Keep them</button>
+                <button class="button button--danger" @click="forgetEverything">Forget them</button>
+            </template>
+        </AppModal>
 
         <AppModal v-model:open="confirmStart" title="Ready to roll?">
             <p>
