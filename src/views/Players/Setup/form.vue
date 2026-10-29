@@ -7,6 +7,11 @@
         <div class="md-layout-item md-small-size-100 md-size-20">
             <md-field :class="hasErrorMessage('color')">
                 <label for="playerColor">Figurines color</label>
+                <span
+                    v-if="playerColor"
+                    class="PlayersSetup__ColorDot PlayersSetup__SelectedColorDot"
+                    :style="colorDotStyle(playerColor)"
+                ></span>
                 <md-select
                     v-model="playerColor"
                     name="playerColor"
@@ -17,7 +22,12 @@
                         v-for="color in availableColors"
                         :key="color.value"
                         :value="color.value"
+                        class="PlayersSetup__ColorOption"
                     >
+                        <span
+                            class="PlayersSetup__ColorDot"
+                            :style="colorDotStyle(color.value)"
+                        ></span>
                         {{ color.name }}
                     </md-option>
                 </md-select>
@@ -41,7 +51,7 @@
 
                 <template slot="md-autocomplete-item" slot-scope="{ item, term }">
                     <span
-                        class="PlayersSetup__SuggestionDot"
+                        class="PlayersSetup__ColorDot"
                         :style="suggestionDotStyle(item)"
                     ></span>
                     <md-highlight-text :md-term="term">{{ item }}</md-highlight-text>
@@ -132,7 +142,11 @@ export default class PlayersSetupForm extends Vue {
 
     suggestionDotStyle(name: string) {
         const saved = this.savedPlayers.find((p) => p.name === name);
-        return saved ? { 'background-color': `#${saved.color}` } : {};
+        return saved ? this.colorDotStyle(saved.color) : {};
+    }
+
+    colorDotStyle(color: string) {
+        return { 'background-color': `#${color}` };
     }
 
     sameName(a: string, b: string) {

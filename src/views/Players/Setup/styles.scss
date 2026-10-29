@@ -84,11 +84,23 @@
     }
 }
 
-.PlayersSetup__SuggestionDot {
+.PlayersSetup__ColorDot {
     display: inline-block;
     flex-shrink: 0;
     width: 12px;
     height: 12px;
     margin-right: 12px;
     border-radius: 50%;
+}
+
+.PlayersSetup__SelectedColorDot {
+    align-self: center;
+    margin-right: 8px;
+}
+
+// vue-material stacks option content in a column; keep the dot beside the name.
+.PlayersSetup__ColorOption .md-list-item-text {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
