@@ -98,7 +98,7 @@ const steps = [
                     <p>
                         New to iKNOW? Have a look at the
                         <a
-                            class="link text-accent"
+                            class="link text-accent-text"
                             target="_blank"
                             rel="noopener"
                             href="http://www.tactic.net/iknow/eng/miten_pelaan.php"

@@ -12,10 +12,13 @@
     --accent: oklch(0.5288 0.2633 281.54);
     --accent-foreground: oklch(99.11% 0 0);
     --focus: oklch(0.5288 0.2633 281.54);
+    /* Accent for small text such as links. */
+    --accent-text: oklch(0.5288 0.2633 281.54);
 
     --background: oklch(0.9702 0.0054 281.54);
     --foreground: oklch(0.2103 0.0054 281.54);
-    --muted: oklch(0.5517 0.0108 281.54);
+    /* A touch darker than the theme builder's 0.5517, so small gray text passes WCAG AA (4.5:1). */
+    --muted: oklch(0.5 0.0108 281.54);
     --default: oklch(0.94 0.0054 281.54);
     --default-foreground: oklch(0.2103 0.0059 281.54);
 
@@ -31,7 +34,7 @@
 
     --field-background: oklch(1 0.0027 281.54);
     --field-foreground: oklch(0.2103 0.0054 281.54);
-    --field-placeholder: oklch(0.5517 0.0108 281.54);
+    --field-placeholder: oklch(0.5 0.0108 281.54);
     --field-border: transparent;
 
     --radius: 0.25rem;
@@ -51,6 +54,10 @@
     --accent: oklch(0.5288 0.2633 281.54);
     --accent-foreground: oklch(99.11% 0 0);
     --focus: oklch(0.5288 0.2633 281.54);
+    /* The accent is too dark to read as small text on a dark background, so links and
+       secondary buttons use a lighter tint of it. */
+    --accent-text: oklch(0.76 0.14 281.54);
+    --accent-soft-foreground: oklch(0.76 0.14 281.54);
 
     --background: oklch(0.12 0.0054 281.54);
     --foreground: oklch(0.9911 0.0054 281.54);
@@ -75,6 +82,18 @@
 
     --board-line: oklch(0.72 0.0108 281.54);
     --board-slot: oklch(0.3 0.0108 281.54);
+}
+
+/* Lets Tailwind use the readable accent as `text-accent-text`. */
+@theme inline {
+    --color-accent-text: var(--accent-text);
+}
+
+/* A deeper red behind the danger button's white text, for WCAG AA contrast. */
+.button--danger {
+    --button-bg: oklch(0.55 0.21 25.74);
+    --button-bg-hover: oklch(0.5 0.2 25.74);
+    --button-bg-pressed: oklch(0.5 0.2 25.74);
 }
 
 /* React Aria normally sets these at runtime. */
