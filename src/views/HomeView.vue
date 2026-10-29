@@ -166,10 +166,16 @@ const steps = [
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-separator py-4 text-center text-xs text-muted">
-                &copy; {{ year }}
-                <a class="link" href="https://martynaskasp.lt" target="_blank" rel="noopener">MartynasK</a>.
-                Made for game nights.
+            <div class="space-y-1 border-t border-separator px-4 py-4 text-center text-xs text-muted">
+                <p>
+                    &copy; {{ year }}
+                    <a class="link" href="https://martynaskasp.lt" target="_blank" rel="noopener">MartynasK</a>.
+                    Made for game nights.
+                </p>
+                <p class="mx-auto max-w-xl text-pretty">
+                    iKNOW Calculator is an unofficial fan-made tool. It is not affiliated with, endorsed by
+                    or sponsored by Tactic Games. iKNOW is a trademark of its respective owner.
+                </p>
             </div>
         </footer>
     </div>

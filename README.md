@@ -8,6 +8,8 @@ This calculator does the bookkeeping for you: who reads the card, who picks the 
 
 New to iKNOW? Have a look at the [official rules](http://www.tactic.net/iknow/eng/miten_pelaan.php) first.
 
+> iKNOW Calculator is an unofficial fan-made tool. It is not affiliated with, endorsed by or sponsored by Tactic Games. iKNOW is a trademark of its respective owner.
+
 ## How to play with it
 
 1. **Gather the gang.** While someone sets up the board, add everyone's name and figure color. Played before? Pick a saved player from the name field, or bring back the whole crew from one of your last three games with one tap.
