@@ -1,6 +1,7 @@
 <template>
     <div class="PlayersSetup__Container">
         <div class="md-layout-item">
+            <PlayersSetupRecent />
             <PlayersSetupForm :players="players" />
             <PlayersSetupList :players="players" />
 
@@ -53,6 +54,7 @@ import { PlayerType } from '@/store/types';
 import PlayersSetupForm from './form.vue';
 import PlayersSetupList from './list.vue';
 import PlayersSetupDialog from './dialog.vue';
+import PlayersSetupRecent from './recent.vue';
 
 @Component({
     metaInfo: {
@@ -62,6 +64,7 @@ import PlayersSetupDialog from './dialog.vue';
         PlayersSetupForm,
         PlayersSetupList,
         PlayersSetupDialog,
+        PlayersSetupRecent,
     },
 })
 export default class PlayersSetup extends Vue {

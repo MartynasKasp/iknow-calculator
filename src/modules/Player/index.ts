@@ -196,6 +196,20 @@ export class Player extends VuexModule {
         }
     }
 
+    // Fills the line-up at once, e.g. from a recent game.
+    @Action
+    public loadPlayersToGame(list: { name: string; color: string }[]) {
+        const players = list
+            .slice(0, MAX_PLAYERS)
+            .map(({ name, color }) => ({
+                name, color, points: 1, roundResult: 0,
+            }));
+        this.setPlayersData(players);
+        this.clearFormErrors();
+        this.clearFormData();
+        this.setFormDisabled(players.length >= MAX_PLAYERS);
+    }
+
     @Action
     public removePlayerFromGame(index: number) {
         this.removePlayer(index);

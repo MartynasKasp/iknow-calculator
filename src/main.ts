@@ -5,6 +5,7 @@ import {
     MdSnackbar, MdIcon, MdDialog, MdApp,
     MdToolbar, MdContent, MdCard, MdDivider,
     MdSpeedDial, MdSubheader, MdDialogPrompt,
+    MdAutocomplete, MdHighlightText,
 } from 'vue-material/dist/components';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default-dark.css';
@@ -31,6 +32,8 @@ Vue.use(MdDivider);
 Vue.use(MdSpeedDial);
 Vue.use(MdSubheader);
 Vue.use(MdDialogPrompt);
+Vue.use(MdAutocomplete);
+Vue.use(MdHighlightText);
 
 new Vue({
     router,
