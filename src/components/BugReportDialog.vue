@@ -16,7 +16,7 @@ const email = 'bugs@iknowcalculator.online';
         </template>
         <p>
             Oops, sorry about that! Drop a line to
-            <a class="link text-accent" :href="`mailto:${email}?subject=Bug%20report`">{{ email }}</a>
+            <a class="link text-accent-text" :href="`mailto:${email}?subject=Bug%20report`">{{ email }}</a>
             and tell us what happened. The more detail, the faster it gets squashed.
         </p>
         <p class="mt-2">Thanks for helping out!</p>
