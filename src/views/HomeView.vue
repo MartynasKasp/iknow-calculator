@@ -14,19 +14,19 @@ const startGame = () => router.push({ name: 'playersSetup' });
 
 const steps = [
     {
-        image: '/img/step1.jpg',
+        image: '/img/step1.webp',
         title: 'Gather the gang',
         text: 'While someone sets up the board, add everyone\'s name and figure color. '
             + 'Played before? Bring back last game\'s crew with one tap.',
     },
     {
-        image: '/img/step2.jpg',
+        image: '/img/step2.webp',
         title: 'Place your bets',
         text: 'The app tells you who reads the card and who picks the category. '
             + 'Then copy the iKNOW and iBET figures from the real board onto the app\'s board.',
     },
     {
-        image: '/img/step3.jpg',
+        image: '/img/step3.webp',
         title: 'Count the points',
         text: 'Once the answer is out, tap the iKNOW figures of everyone who got it right. '
             + 'The app works out who gains and who loses, and keeps the score.',
@@ -54,8 +54,11 @@ const steps = [
         <main>
             <section class="relative isolate overflow-hidden">
                 <img
-                    src="/img/iknow.jpg"
+                    src="/img/iknow.webp"
                     alt=""
+                    width="1440"
+                    height="1077"
+                    fetchpriority="high"
                     class="absolute inset-0 -z-10 size-full object-cover opacity-25 dark:opacity-20"
                 >
                 <div class="absolute inset-0 -z-10 bg-linear-to-b from-background/40 via-background/70 to-background"></div>
@@ -112,7 +115,15 @@ const steps = [
 
                     <ol class="mt-10 grid gap-6 md:grid-cols-3">
                         <li v-for="(step, index) in steps" :key="step.title" class="card card--default overflow-hidden p-0">
-                            <img :src="step.image" :alt="step.title" class="aspect-4/3 w-full object-cover" loading="lazy">
+                            <img
+                                :src="step.image"
+                                :alt="step.title"
+                                width="900"
+                                height="675"
+                                class="aspect-4/3 w-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                            >
                             <div class="card__content gap-2 p-5">
                                 <div class="flex items-center gap-3">
                                     <span class="grid size-7 shrink-0 place-items-center rounded-full bg-accent text-sm font-bold text-accent-foreground">

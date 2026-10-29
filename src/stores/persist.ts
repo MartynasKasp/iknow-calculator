@@ -1,4 +1,5 @@
 import type { PiniaPluginContext } from 'pinia';
+import { upgradeLegacyColors } from './constants';
 
 // The game in progress is kept in localStorage, so a page reload doesn't lose it.
 // It's forgotten after 30 minutes without changes, same as before the Vue 3 update.
@@ -20,7 +21,7 @@ function readState(): SavedState {
         const expires = localStorage.getItem(EXPIRES_KEY);
         if (expires && new Date() > new Date(expires)) return {};
         const raw = localStorage.getItem(STATE_KEY);
-        return raw ? JSON.parse(raw) : {};
+        return raw ? JSON.parse(raw, upgradeLegacyColors) : {};
     } catch {
         return {};
     }

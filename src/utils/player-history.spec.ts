@@ -22,4 +22,9 @@ describe('player history', () => {
         PlayerHistory.rememberGame(lineup('C'));
         expect(PlayerHistory.getRecentGames().map((g) => g.players[0].name)).toEqual(['C', 'D', 'B']);
     });
+
+    it('upgrades figure colors saved before the redesign', () => {
+        localStorage.setItem('saved_players', JSON.stringify([{ name: 'Ona', color: 'e84a50' }]));
+        expect(PlayerHistory.getSavedPlayers()).toEqual([{ name: 'Ona', color: 'f2334a' }]);
+    });
 });

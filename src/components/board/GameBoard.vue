@@ -73,12 +73,18 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
                 :aria-pressed="checking ? box.knowAnswer : undefined"
                 @click="board.toggleKnow(box.level)"
             >
-                <span class="points" :aria-label="`${box.points} points`">
+                <!-- Point dots, laid out like on the real board. A figure covers them. -->
+                <span
+                    v-if="!box.playerKnowFigure"
+                    class="points"
+                    :class="`points--${box.points}`"
+                    :aria-label="`${box.points} points`"
+                >
                     <span v-for="point in box.points" :key="point" class="point"></span>
                 </span>
                 <Transition name="pop">
                     <span v-if="box.knowAnswer" class="check">
-                        <Check class="size-1/2" :stroke-width="3" />
+                        <Check class="size-[70%] drop-shadow-[0_1px_2px_rgb(0_0_0/0.5)]" :stroke-width="4.5" />
                     </span>
                 </Transition>
             </button>
@@ -97,8 +103,9 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
 
 <style scoped>
 .figure {
-    /* Fit all six rows on a phone screen, between the info cards and the action bar. */
-    --size: clamp(46px, min(19vw, calc((100dvh - 490px) / 6)), 88px);
+    /* As big as the screen allows, shrinking on short or narrow screens. */
+    --size: clamp(60px, min(20vw, calc((100dvh - 300px) / 6)), 100px);
+    --dot: calc(var(--size) * 0.14);
     position: relative;
     width: var(--size);
     height: var(--size);
@@ -122,11 +129,11 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
 }
 
 .figure--empty {
-    background-color: var(--surface);
+    background-color: var(--board-slot);
 }
 
 .figure--empty:hover:not(:disabled) {
-    background-color: var(--surface-secondary);
+    background-color: color-mix(in oklab, var(--board-slot) 85%, var(--foreground));
 }
 
 .figure:disabled {
@@ -134,11 +141,11 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
 }
 
 .is-checking .figure--bet {
-    opacity: 0.45;
+    opacity: 0.7;
 }
 
 .is-checking .figure--know.figure--empty {
-    opacity: 0.35;
+    opacity: 0.55;
 }
 
 .is-checking .figure--know:not(.figure--empty) {
@@ -147,18 +154,41 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
 
 .points {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    display: flex;
-    gap: 3px;
+    inset: 0;
+    margin: auto;
+    display: grid;
+    width: calc(var(--dot) * 2.6);
+    height: calc(var(--dot) * 2.4);
+    grid-template: repeat(2, var(--dot)) / repeat(2, var(--dot));
+    place-content: center;
+    gap: calc(var(--dot) * 0.4);
 }
 
 .point {
-    width: clamp(7px, 2vw, 10px);
-    height: clamp(7px, 2vw, 10px);
+    width: var(--dot);
+    height: var(--dot);
     border-radius: 9999px;
     background: var(--board-line);
-    box-shadow: 0 0 0 1.5px var(--surface);
+}
+
+/* 1 point: a single dot in the middle. */
+.points--1 {
+    grid-template: var(--dot) / var(--dot);
+}
+
+/* 2 points: two dots on a diagonal. */
+.points--2 .point:nth-child(1) {
+    grid-area: 1 / 2;
+}
+
+.points--2 .point:nth-child(2) {
+    grid-area: 2 / 1;
+}
+
+/* 3 points: a triangle, one dot on top and two below. */
+.points--3 .point:nth-child(1) {
+    grid-column: 1 / 3;
+    justify-self: center;
 }
 
 .check {
@@ -167,7 +197,7 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
     display: grid;
     place-items: center;
     color: white;
-    background: color-mix(in oklab, black 30%, transparent);
+    background: color-mix(in oklab, black 20%, transparent);
     border-radius: inherit;
 }
 

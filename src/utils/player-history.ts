@@ -1,6 +1,8 @@
 // Remembers players and recent line-ups across games.
-// Kept separate from the game state in local-storage-manager,
+// Kept separate from the game state in stores/persist.ts,
 // because that state expires after 30 minutes and this should not.
+
+import { upgradeLegacyColors } from '@/stores/constants';
 
 const SAVED_PLAYERS_KEY = 'saved_players';
 const RECENT_GAMES_KEY = 'recent_games';
@@ -26,7 +28,7 @@ const lineupKey = (players: SavedPlayerType[]) => players
 function read<T>(key: string): T[] {
     try {
         const raw = localStorage.getItem(key);
-        const parsed = raw ? JSON.parse(raw) : [];
+        const parsed = raw ? JSON.parse(raw, upgradeLegacyColors) : [];
         return Array.isArray(parsed) ? parsed : [];
     } catch {
         return [];
