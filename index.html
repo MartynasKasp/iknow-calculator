@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+        <link rel="icon" href="/favicon.ico" sizes="48x48">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <meta name="theme-color" content="#603AFB">
+        <!-- Open as a full-screen app when added to an iPhone or iPad home screen. -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="iKNOW Calc">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="description" content="Keeps score in the iKNOW board game, so you can keep playing.">
+        <title>iKNOW Calculator</title>
+        <script>
+            // Match the device's light/dark setting before the app loads, so the page doesn't flash.
+            (function () {
+                var query = window.matchMedia('(prefers-color-scheme: dark)');
+                var apply = function () {
+                    document.documentElement.classList.toggle('dark', query.matches);
+                };
+                apply();
+                query.addEventListener('change', apply);
+            })();
+        </script>
+    </head>
+    <body>
+        <noscript>
+            <strong>The iKNOW Calculator needs JavaScript to run. Please turn it on and come back!</strong>
+        </noscript>
+        <div id="app"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
