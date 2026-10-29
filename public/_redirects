@@ -1,0 +1,3 @@
+# Serve the app for every path (e.g. /game/board), so reloads and shared links work.
+# Netlify serves real files first, so assets are not affected.
+/*    /index.html   200
