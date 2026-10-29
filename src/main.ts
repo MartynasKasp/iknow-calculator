@@ -1,54 +1,19 @@
-import Vue from 'vue';
-import VueMeta from 'vue-meta';
-import {
-    MdButton, MdField, MdMenu, MdList,
-    MdSnackbar, MdIcon, MdDialog, MdApp,
-    MdToolbar, MdContent, MdCard, MdDivider,
-    MdSpeedDial, MdSubheader, MdDialogPrompt,
-    MdAutocomplete, MdHighlightText,
-} from 'vue-material/dist/components';
-import 'vue-material/dist/vue-material.min.css';
-import 'vue-material/dist/theme/default-dark.css';
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import { createHead } from '@unhead/vue/client';
+import { registerSW } from 'virtual:pwa-register';
 import App from './App.vue';
-import './registerServiceWorker';
 import router from './router';
-import store from './store';
+import { persistPlugin } from './stores/persist';
+import './styles/main.css';
 
-Vue.config.productionTip = false;
+const pinia = createPinia();
+pinia.use(persistPlugin);
 
-Vue.use(VueMeta);
-Vue.use(MdButton);
-Vue.use(MdField);
-Vue.use(MdMenu);
-Vue.use(MdList);
-Vue.use(MdSnackbar);
-Vue.use(MdIcon);
-Vue.use(MdDialog);
-Vue.use(MdApp);
-Vue.use(MdToolbar);
-Vue.use(MdContent);
-Vue.use(MdCard);
-Vue.use(MdDivider);
-Vue.use(MdSpeedDial);
-Vue.use(MdSubheader);
-Vue.use(MdDialogPrompt);
-Vue.use(MdAutocomplete);
-Vue.use(MdHighlightText);
+createApp(App)
+    .use(pinia)
+    .use(router)
+    .use(createHead())
+    .mount('#app');
 
-new Vue({
-    router,
-    store,
-    render: (h) => h(App),
-    metaInfo: () => ({
-        title: 'Home',
-        titleTemplate: '%s | iKNOW Points Calculator',
-        htmlAttrs: {
-            lang: 'en',
-        },
-        meta: [
-            { name: 'description', content: 'iKNOW board game playing made easier and faster!' },
-            { name: 'author', content: 'MartynasKasp' },
-            { name: 'keywords', content: 'iknow, iknow board game, iknow calculator, iknow board game calculator, iknow points calculator, iknow points, iknow online, iknow points online, iknow game, iknow board, tactic, tactic iknow, i know, i know board game, i know points calculator, i know online' },
-        ],
-    }),
-}).$mount('#app');
+registerSW({ immediate: true });

@@ -1,0 +1,135 @@
+@import "@heroui/styles";
+@import "@fontsource/varela-round/400.css";
+
+/*
+ * HeroUI theme, generated with the same rules as the heroui.com theme builder:
+ * accent #603AFB, base chroma 0.0054, Varela Round, radius small, form radius medium.
+ * Neutral colors take the accent hue (281.54) tinted by the base chroma.
+ */
+:root,
+.light,
+[data-theme="light"] {
+    --accent: oklch(0.5288 0.2633 281.54);
+    --accent-foreground: oklch(99.11% 0 0);
+    --focus: oklch(0.5288 0.2633 281.54);
+
+    --background: oklch(0.9702 0.0054 281.54);
+    --foreground: oklch(0.2103 0.0054 281.54);
+    --muted: oklch(0.5517 0.0108 281.54);
+    --default: oklch(0.94 0.0054 281.54);
+    --default-foreground: oklch(0.2103 0.0059 281.54);
+
+    --surface: oklch(1 0.0027 281.54);
+    --surface-secondary: oklch(0.9524 0.0043 281.54);
+    --surface-tertiary: oklch(0.9373 0.0043 281.54);
+    --overlay: oklch(1 0.0016 281.54);
+    --segment: oklch(1 0.0054 281.54);
+    --scrollbar: oklch(0.871 0.0054 281.54);
+
+    --border: oklch(0.9 0.0054 281.54);
+    --separator: oklch(0.92 0.0054 281.54);
+
+    --field-background: oklch(1 0.0027 281.54);
+    --field-foreground: oklch(0.2103 0.0054 281.54);
+    --field-placeholder: oklch(0.5517 0.0108 281.54);
+    --field-border: transparent;
+
+    --radius: 0.25rem;
+    --field-radius: 0.5rem;
+
+    --font-sans: "Varela Round", ui-rounded, system-ui, sans-serif;
+
+    /* App tokens */
+    --board-line: oklch(0.8 0.0108 281.54);
+}
+
+.dark,
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --accent: oklch(0.5288 0.2633 281.54);
+    --accent-foreground: oklch(99.11% 0 0);
+    --focus: oklch(0.5288 0.2633 281.54);
+
+    --background: oklch(0.12 0.0054 281.54);
+    --foreground: oklch(0.9911 0.0054 281.54);
+    --muted: oklch(0.705 0.0108 281.54);
+    --default: oklch(0.274 0.0054 281.54);
+    --default-foreground: oklch(0.9911 0 0);
+
+    --surface: oklch(0.2103 0.0108 281.54);
+    --surface-secondary: oklch(0.257 0.0081 281.54);
+    --surface-tertiary: oklch(0.2721 0.0081 281.54);
+    --overlay: oklch(0.2103 0.0108 281.54);
+    --segment: oklch(0.3964 0.0054 281.54);
+    --scrollbar: oklch(0.705 0.0054 281.54);
+
+    --border: oklch(0.28 0.0054 281.54);
+    --separator: oklch(0.25 0.0054 281.54);
+
+    --field-background: oklch(0.2103 0.0108 281.54);
+    --field-foreground: oklch(0.9911 0.0054 281.54);
+    --field-placeholder: oklch(0.705 0.0108 281.54);
+    --field-border: transparent;
+
+    --board-line: oklch(0.42 0.0108 281.54);
+}
+
+/* React Aria normally sets these at runtime. */
+:root {
+    --visual-viewport-height: 100dvh;
+    --toast-width: 22rem;
+}
+
+/* Keep toasts above the bottom action bar. */
+.toast-region--bottom {
+    bottom: calc(5rem + env(safe-area-inset-bottom));
+}
+
+html,
+body {
+    min-height: 100%;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Reka UI marks open/closed and highlighted state with its own attributes,
+ * while HeroUI's CSS expects React Aria's. These rules bridge the two.
+ */
+.list-box-item[data-highlighted] {
+    background-color: var(--default);
+}
+
+.list-box-item[data-state="checked"] {
+    font-weight: 600;
+}
+
+.modal__backdrop[data-state="open"],
+.select__popover[data-state="open"],
+.combo-box__popover[data-state="open"] {
+    animation: app-fade-in 150ms ease-out;
+}
+
+.modal__dialog[data-state="open"] {
+    animation: app-pop-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+@keyframes app-fade-in {
+    from { opacity: 0; }
+}
+
+@keyframes app-pop-in {
+    from { opacity: 0; transform: scale(0.96) translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal__backdrop[data-state="open"],
+    .modal__dialog[data-state="open"],
+    .select__popover[data-state="open"],
+    .combo-box__popover[data-state="open"] {
+        animation: none;
+    }
+}

@@ -1,23 +1,58 @@
-# iKNOW Points Calculator
+# iKNOW Calculator
 
-[![Build Status](https://travis-ci.com/MartynasKasp/iknow-calculator.svg?branch=master)](https://travis-ci.com/MartynasKasp/iknow-calculator)
+**Less math, more trivia.**
 
-iKNOW is a board game with a touch more interaction. It wraps knowledge, skill and luck into a single stylish whole. It’s all about what you know, what you think the other players know, and how well you know your friends.
+iKNOW is the board game where it's not just about what you know, it's about what you think your friends know. Great fun! Counting everyone's points after every round? Not so much.
 
-This online game points calculator was made to make your iKNOW board game playing experience much easier and faster! Forget about wasting minutes after every round to correctly calculate the points of each player. With this easy to use calculator you will be able to save playing time (which means you can play more matches), calculate each rounds outcome and track everyones score! When one of the players collects points needed to win the game, it will automatically end, announcing the winner and showing the final results.
+This calculator does the bookkeeping for you: who reads the card, who picks the category, who bet on whom and who's in the lead. When someone reaches 20 points, it crowns the winner. Confetti included.
 
-So what are you waiting for? Pick a friend who will administrate the calculator, set it up and [start the game](http://iknow.martynaskasp.lt/game/players).
+New to iKNOW? Have a look at the [official rules](http://www.tactic.net/iknow/eng/miten_pelaan.php) first.
 
-*If you are not familiar with the iKNOW board game you should read the original [instructions](http://www.tactic.net/iknow/eng/miten_pelaan.php) first.*
+## How to play with it
 
-## How to use it?
-1. **Players setup**. 
-While your friends prepares the board and questions, add all your friends to the list by typing in their names and assigning them their picked figurines colors. To continue just press the red action button on the bottom left corner.
+1. **Gather the gang.** While someone sets up the board, add everyone's name and figure color. Played before? Pick a saved player from the name field, or bring back the whole crew from one of your last three games with one tap.
+2. **Place your bets.** The app tells you who reads the card and who picks the category. Then copy the iKNOW and iBET figures from the real board onto the app's board. Placing starts with the player after the card reader.
+3. **Count the points.** Once the answer is out, tap **Check answers**, then tap the iKNOW figures of everyone who got it right and hit **Count points**. The app works out who gains and who loses.
 
-2. **Figures placing**. 
-The game shows who picks the category and reads the question. While your friends places iKNOW and iBET figures on the board, you do the same in the calculator. Figures placing order in the calculator starts from the card reader.
+Made a mistake? The trophy button on the board opens the scoreboard, where you can fix anyone's points.
 
-3. **Answers check**. 
-After the card reader tells the correct answer, check the iKNOW figures of those who answered correctly. Click the action button and give or take the tokens from players based on the shown round results.
+[Start a game](https://iknow-calc.netlify.app/)
 
-[Visit the website](http://iknow.martynaskasp.lt/)
+## Development
+
+Built with Vue 3, Vite, Pinia and Vue Router. The UI uses [HeroUI](https://heroui.com) styles (`@heroui/styles`, on Tailwind CSS 4) with [Reka UI](https://reka-ui.com) for dialogs, selects and the name combobox.
+
+You need Node 22 or newer and Yarn 1.
+
+```bash
+yarn install
+```
+
+```bash
+yarn dev
+```
+
+The app runs at http://localhost:3000.
+
+| Command | What it does |
+| --- | --- |
+| `yarn dev` | Starts the dev server with hot reload |
+| `yarn build` | Type-checks and builds the app into `dist/` |
+| `yarn preview` | Serves the built app locally |
+| `yarn test:unit` | Runs the unit tests (scoring rules and player history) |
+| `yarn lint` | Lints the code |
+
+### Where things live
+
+- `src/views/`: the pages (home, players setup, board, game end, 404)
+- `src/components/`: shared pieces, with HeroUI-styled primitives in `components/ui/`
+- `src/stores/`: game state in Pinia. Scoring rules are in `stores/player.ts`.
+- `src/stores/persist.ts`: keeps a game in progress in localStorage for 30 minutes, so a reload doesn't lose it
+- `src/utils/player-history.ts`: remembers players and the last three line-ups
+- `src/styles/main.css`: the HeroUI theme (accent `#603AFB`, Varela Round) for light and dark mode
+
+### Docker
+
+`docker compose up` starts a dev container with Node 22. Run `yarn install && yarn dev` inside it.
+
+`Dockerfile.prod` builds the app and serves it with the small Express server in `server/index.cjs`.
