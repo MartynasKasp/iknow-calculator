@@ -41,6 +41,12 @@ export default defineConfig({
                 cleanupOutdatedCaches: true,
                 navigateFallback: '/index.html',
             },
+            // Serve the manifest and a service worker from `yarn dev` too,
+            // so "Add to Home Screen" can be tried without a production build.
+            devOptions: {
+                enabled: true,
+                navigateFallback: 'index.html',
+            },
         }),
     ],
     resolve: {

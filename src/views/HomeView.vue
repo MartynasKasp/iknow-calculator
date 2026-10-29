@@ -36,7 +36,7 @@ const steps = [
 
 <template>
     <div class="min-h-dvh">
-        <header class="sticky top-0 z-30 border-b border-separator bg-background/85 backdrop-blur-md">
+        <header class="sticky top-0 z-30 border-b border-separator bg-background/85 pt-[env(safe-area-inset-top)] backdrop-blur-md">
             <nav class="mx-auto flex h-16 max-w-5xl items-center gap-4 px-4">
                 <RouterLink to="/" class="flex items-center gap-2 font-semibold">
                     <span class="grid size-8 place-items-center rounded-md bg-accent text-accent-foreground">
@@ -82,7 +82,7 @@ const steps = [
                 </div>
             </section>
 
-            <section id="about" class="mx-auto max-w-3xl scroll-mt-20 px-4 py-16">
+            <section id="about" class="mx-auto max-w-3xl scroll-mt-[calc(5rem+env(safe-area-inset-top))] px-4 py-16">
                 <h2 class="text-2xl font-bold sm:text-3xl">What's this?</h2>
                 <div class="mt-4 space-y-4 text-pretty text-muted">
                     <p>
@@ -108,7 +108,7 @@ const steps = [
                 </div>
             </section>
 
-            <section id="how-it-works" class="scroll-mt-20 bg-surface-secondary/60 py-16">
+            <section id="how-it-works" class="scroll-mt-[calc(5rem+env(safe-area-inset-top))] bg-surface-secondary/60 py-16">
                 <div class="mx-auto max-w-5xl px-4">
                     <h2 class="text-center text-2xl font-bold sm:text-3xl">How it works</h2>
                     <p class="mt-2 text-center text-muted">Three steps, and then it's all trivia.</p>

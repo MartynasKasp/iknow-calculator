@@ -97,6 +97,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Keep content clear of the notch and rounded corners when an iPhone is held sideways. */
+body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
 /*
  * Reka UI marks open/closed and highlighted state with its own attributes,
  * while HeroUI's CSS expects React Aria's. These rules bridge the two.
