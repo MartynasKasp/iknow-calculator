@@ -22,6 +22,15 @@ const onBet = (box: BoardBoxType, positive: boolean) => {
     }
 };
 
+const onKnow = (box: BoardBoxType) => {
+    if (board.toggleKnow(box.level) === 'has-bets') {
+        showToast('Take the iBETs off this row first.', {
+            description: 'They belong to this answer, so it has to stay while they\'re here.',
+            tone: 'warning',
+        });
+    }
+};
+
 const knowLabel = (box: BoardBoxType) => {
     const who = box.playerKnowFigure?.name;
     if (checking.value) {
@@ -69,7 +78,7 @@ const betLabel = (box: BoardBoxType, positive: boolean) => {
                     :disabled="checking && !box.playerKnowFigure"
                     :aria-label="knowLabel(box)"
                     :aria-pressed="checking ? box.knowAnswer : undefined"
-                    @click="board.toggleKnow(box.level)"
+                    @click="onKnow(box)"
                 >
                     <!-- Point dots, laid out like on the real board. A figure covers them. -->
                     <span

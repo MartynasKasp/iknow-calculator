@@ -27,6 +27,7 @@ export const defaultGameBoard = (): BoardBoxType[] => BOARD_ROWS.map(({ level, p
 }));
 
 export type BetResult = 'placed' | 'removed' | 'own-figure' | 'no-know-figure' | 'none-left';
+export type KnowResult = 'placed' | 'removed' | 'toggled' | 'has-bets' | 'none-left';
 
 export const useBoardStore = defineStore('board', {
     state: () => ({
@@ -44,21 +45,30 @@ export const useBoardStore = defineStore('board', {
 
         // Tap on an iKNOW square: place the next figure, take it back,
         // or (when checking answers) mark it right or wrong.
-        toggleKnow(level: number) {
+        toggleKnow(level: number): KnowResult {
             const players = usePlayerStore();
             const box = this.box(level);
 
             if (this.boardStatus === BoardStatus.figuresSetup) {
                 if (box.playerKnowFigure === null) {
                     const player = players.knowFigures.shift();
-                    if (player) box.playerKnowFigure = player;
-                } else {
-                    players.knowFigures.unshift(box.playerKnowFigure);
-                    box.playerKnowFigure = null;
+                    if (!player) return 'none-left';
+                    box.playerKnowFigure = player;
+                    return 'placed';
                 }
-            } else if (box.playerKnowFigure) {
-                box.knowAnswer = !box.knowAnswer;
+                // iBETs belong to the answer on their row. Taking that answer away
+                // would leave them on an empty row, where they'd never be scored.
+                if (box.playerBetFigure.positive || box.playerBetFigure.negative) {
+                    return 'has-bets';
+                }
+                players.knowFigures.unshift(box.playerKnowFigure);
+                box.playerKnowFigure = null;
+                return 'removed';
             }
+
+            if (!box.playerKnowFigure) return 'none-left';
+            box.knowAnswer = !box.knowAnswer;
+            return 'toggled';
         },
 
         // Tap on an iBET circle (positive = "+" side, negative = "-" side).
